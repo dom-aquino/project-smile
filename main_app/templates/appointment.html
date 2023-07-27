@@ -2,5 +2,13 @@
 
 {% block content %}
     <h1>Welcome to the Appointment Page!</h1>
+    <label>
+        Select the appointment date:
+        <input type="date" name="appointment_date"/>
+    </label>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
 {% endblock %}
 
