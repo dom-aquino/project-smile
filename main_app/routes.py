@@ -10,3 +10,7 @@ def index():
 def appointment():
     return render_template("appointment.html", title="Appointment")
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html", title="Admin")
+
