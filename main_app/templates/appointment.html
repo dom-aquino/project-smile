@@ -2,24 +2,28 @@
 
 {% block content %}
     <h1>Welcome to the Appointment Page!</h1>
-    <div>
-        <label>
-            Select the appointment date:
-            <input type="date" name="appt_date"/>
-        </label>
-    </div>
-    <div>
-    <br>
-    <div>
-        <label>
-            Select the time for the appointment:
-            <input type="time" name="appt_time" step="1800"/>
-        </label>
-    </div>
-    <br>
-    <div>
-        <input type="button" name="submit" value="Submit"/>
-    </div>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}:
+            {{ form.name(size=32) }}
+        </p>
+        <p>
+            {{ form.appt_date.label }}:
+            {{ form.appt_date() }}
+        </p>
+        <p>
+            {{ form.appt_time.label }}:
+            {{ form.appt_time() }}
+        </p>
+        <p>
+            {{ form.service.label }}:
+            {{ form.service() }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
 {% endblock %}
 
 {% block script %}
