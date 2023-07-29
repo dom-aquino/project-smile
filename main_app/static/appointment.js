@@ -18,7 +18,7 @@ function getMinDate(dateNow) {
 }
 
 function getMaxDate(minDate) {
-    let dateAfterOneMonth = addMonths(new Date(minDate), 1);
+    let dateAfterOneMonth = addMonths(new Date(minDate), 3);
     let month = String(dateAfterOneMonth.getMonth() + 1).padStart(2, '0');
     let day = String(dateAfterOneMonth.getDate()).padStart(2, '0');
     let year = dateAfterOneMonth.getFullYear();
@@ -30,12 +30,29 @@ function updateDateSelection() {
     let dateNow = new Date();
     let minDate = getMinDate(dateNow);
     let maxDate = getMaxDate(minDate);
-    const dateControl = document.querySelector('input[type="date"]');
+    const dateControl = document.querySelector('input[name="appt_date"]');
     dateControl.value = dateControl.min = minDate;
     dateControl.max = maxDate;
 }
 
+function updateTimeSelection() {
+    const timeControl = document.querySelector('input[name="appt_time"]');
+    timeControl.value = timeControl.min = "09:00";
+    timeControl.max = "18:00";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     updateDateSelection();
+    updateTimeSelection();
+});
+
+const submitButton = document.querySelector('input[name="submit"]');
+
+submitButton.addEventListener("click", function() {
+    console.log("Submit button is clicked.");
+    const dateControl = document.querySelector('input[name="appt_date"]');
+    const timeControl = document.querySelector('input[name="appt_time"]');
+    console.log("The selected date is:", dateControl.value);
+    console.log("The selected time is:", timeControl.value);
 });
 
