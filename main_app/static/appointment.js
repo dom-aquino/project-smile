@@ -49,10 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const submitButton = document.querySelector('input[name="submit"]');
 
 submitButton.addEventListener("click", function() {
-    console.log("Submit button is clicked.");
     const dateControl = document.querySelector('input[name="appt_date"]');
     const timeControl = document.querySelector('input[name="appt_time"]');
-    console.log("The selected date is:", dateControl.value);
-    console.log("The selected time is:", timeControl.value);
 });
 
