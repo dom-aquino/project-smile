@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired
 
 class AppointmentForm(FlaskForm):
     name = StringField('Customer Name', validators=[DataRequired()])
+    contact_number = StringField('Contact Number', validators=[DataRequired()])
     appt_date = DateField('Appointment Date', validators=[DataRequired()],
         render_kw={"class": "appt_date"})
     appt_time = TimeField('Appointment Time', validators=[DataRequired()],
