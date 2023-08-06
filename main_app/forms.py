@@ -1,10 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, StringField, TimeField, SubmitField, SelectField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Length
 
 class AppointmentForm(FlaskForm):
-    name = StringField('Customer Name', validators=[DataRequired()])
-    contact_number = StringField('Contact Number', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired(),
+                                                       Length(min=2, max=32)])
+    last_name = StringField('Last Name', validators=[DataRequired(),
+                                                     Length(min=2, max=32)])
+    contact_number = StringField('Contact Number', validators=[DataRequired(),
+                                                               Length(min=11, max=11)])
     appt_date = DateField('Appointment Date', validators=[DataRequired()],
         render_kw={"class": "appt_date"})
     appt_time = TimeField('Appointment Time', validators=[DataRequired()],

@@ -12,7 +12,8 @@ def index():
 def appointment():
     form = AppointmentForm()
     if form.validate_on_submit():
-        appt = Appointment(name=form.name.data,
+        appt = Appointment(first_name=form.first_name.data,
+                           last_name=form.last_name.data,
                            contact_number=form.contact_number.data,
                            appt_date=form.appt_date.data,
                            appt_time=form.appt_time.data,
