@@ -2,5 +2,8 @@
 
 {% block content %}
     <h1>Welcome to the Admin page!</h1>
+    {% for appt in appts %}
+        <p>{{ appt.appt_date }}</p>
+    {% endfor %}
 {% endblock %}
 

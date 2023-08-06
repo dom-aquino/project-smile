@@ -25,5 +25,6 @@ def appointment():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html", title="Admin")
+    appts = Appointment.query.all()
+    return render_template("admin.html", title="Admin", appts=appts)
 
