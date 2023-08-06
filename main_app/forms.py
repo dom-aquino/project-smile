@@ -9,13 +9,12 @@ class AppointmentForm(FlaskForm):
         render_kw={"class": "appt_date"})
     appt_time = TimeField('Appointment Time', validators=[DataRequired()],
         render_kw={"class": "appt_time"})
-    service = SelectField('Type of Service', choices=[
-        ('consultation', 'Consultation'),
-        ('teeth_whitening', 'Teeth Whitening'),
-        ('teeth_braces', 'Teeth Braces'),
-        ('root_canal', 'Root Canal'),
-        ('teeth_extraction', 'Teeth Extraction'),
-        ('dental_filling', 'Dental Filling (Pasta)'),
-        ('oral-propylaxis', 'Oral Propylaxis (Cleaning)')])
+    service = SelectField('Type of Service', choices=[('Consultation'),
+                                                      ('Teeth Whitening'),
+                                                      ('Teeth Braces'),
+                                                      ('Root Canal'),
+                                                      ('Teeth Extraction'),
+                                                      ('Dental Filling (Pasta)'),
+                                                      ('Oral Propylaxis (Cleaning)')])
     submit = SubmitField('Submit')
 

@@ -2,8 +2,23 @@
 
 {% block content %}
     <h1>Welcome to the Admin page!</h1>
-    {% for appt in appts %}
-        <p>{{ appt.appt_date }}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Customer Name</th>
+            <th>Contact Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Service</th>
+        </tr>
+        {% for appt in appts %}
+            <tr>
+                <td>{{ appt.name }}</td>
+                <td>{{ appt.contact_number }}</td>
+                <td>{{ appt.appt_date }}</td>
+                <td>{{ appt.appt_time }}</td>
+                <td>{{ appt.service }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
 
