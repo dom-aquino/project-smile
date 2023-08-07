@@ -6,15 +6,24 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.first_name.label }}:
-            {{ form.first_name(size=32) }}
+            {{ form.first_name(size=32) }}<br>
+            {% for error in form.first_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.last_name.label }}:
-            {{ form.last_name(size=32) }}
+            {{ form.last_name(size=32) }}<br>
+            {% for error in form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.contact_number.label }}:
-            {{ form.contact_number(size=12) }}
+            {{ form.contact_number(size=12) }}<br>
+            {% for error in form.contact_number.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.appt_date.label }}:
