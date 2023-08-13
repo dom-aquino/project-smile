@@ -22,5 +22,11 @@
             </tr>
         {% endfor %}
     </table>
+    <br>
+    <button id="generateTable">Generate table</button>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
 {% endblock %}
 
