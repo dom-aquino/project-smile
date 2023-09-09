@@ -24,7 +24,7 @@ def appointment():
             form.appt_date.data, form.appt_time.data))
     return render_template("appointment.html", title="Appointment", form=form)
 
-@app.route("/admin")
+@app.route("/admin", methods=['GET', 'POST'])
 def admin():
     appts = Appointment.query.all()
     return render_template("admin.html", title="Admin", appts=appts)
