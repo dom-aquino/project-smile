@@ -41,14 +41,12 @@ function updateTimeSelection() {
     timeControl.max = "18:00";
 }
 
+function onDateChange() {
+    console.log("Selection changed...");
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     updateDateSelection();
     updateTimeSelection();
-});
-
-const app_date = document.querySelector('input[name="appt_date"]');
-
-app_date.addEventListener("onchange", function() {
-    console.log("Selection changed...");
 });
 

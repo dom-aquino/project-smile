@@ -6,3 +6,4 @@ viewAppointmentsButton.addEventListener("click", function() {
         method: "POST",
     });
 });
+
