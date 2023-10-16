@@ -46,10 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
     updateTimeSelection();
 });
 
-const submitButton = document.querySelector('input[name="submit"]');
+const app_date = document.querySelector('input[name="appt_date"]');
 
-submitButton.addEventListener("click", function() {
-    const dateControl = document.querySelector('input[name="appt_date"]');
-    const timeControl = document.querySelector('input[name="appt_time"]');
+app_date.addEventListener("onchange", function() {
+    console.log("Selection changed...");
 });
 
