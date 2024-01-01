@@ -3,7 +3,7 @@ from main_app.api import bp
 
 @bp.route("/create-times", methods=['POST'])
 def create_times():
-    print("Creating available times")
+    print("Creating available times for", request.json['date'])
     return {'message': "This is a test"}
 
 
