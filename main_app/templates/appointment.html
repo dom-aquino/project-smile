@@ -27,16 +27,12 @@
         </p>
         <p>
             {{ form.appt_date.label }}:
-            {{ form.appt_date(onchange="onDateChange()") }}
+            {{ form.appt_date(**{"onchange": "onDateChange(form.appt_date)"}) }}
         </p>
         <p>
             {{ form.appt_time.label }}:
             {{ form.appt_time() }}
         </p>
-        <!--
-        When selecting a time, a backend API will be called to check the
-        database for available time slot. If none, display appropriate text.
-        -->
         <p>
             {{ form.service.label }}:
             {{ form.service() }}

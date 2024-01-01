@@ -41,8 +41,14 @@ function updateTimeSelection() {
     timeControl.max = "18:00";
 }
 
-function onDateChange() {
-    console.log("Selection changed...");
+function onDateChange(date) {
+    console.log("Selection changed...", date.value);
+    fetch("api/create-times", {
+        method: "POST",
+    });
+    //fetch("api/get-times", {
+    //    method: "GET",
+    //});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
