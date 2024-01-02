@@ -10,7 +10,8 @@ class Appointment(db.Model):
     service = db.Column(db.String(64))
 
 class Schedule(db.Model):
-    appt_date = db.Column(db.Date(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    appt_date = db.Column(db.Date(), nullable=False)
     appt_hour = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Boolean, default=False, nullable=False)
 
