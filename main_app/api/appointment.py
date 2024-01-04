@@ -16,6 +16,7 @@ def create_times():
                                     status=False)
             db.session.add(new_schedule)
             db.session.commit()
+
     print("Database entries are created successfully.")
     return {'message': "This is a test"}
 
