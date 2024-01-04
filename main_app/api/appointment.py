@@ -6,7 +6,6 @@ from main_app.api import bp
 
 @bp.route("/create-times", methods=['POST'])
 def create_times():
-    print("Creating available times for", request.json['date'])
     request_date = datetime.strptime(request.json['date'], "%Y-%m-%d").date()
     for hour in [1, 2, 3, 4, 5, 6, 7, 8]:
         date = Schedule.query.filter_by(appt_date=request_date,
@@ -17,7 +16,6 @@ def create_times():
             db.session.add(new_schedule)
             db.session.commit()
 
-    print("Database entries are created successfully.")
     return {'message': "This is a test"}
 
 

@@ -42,13 +42,16 @@ function updateTimeSelection() {
 }
 
 function onDateChange(date) {
-    console.log("Selection changed...", date.value);
     fetch("api/create-times", {
         method: "POST",
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
             date: date.value
         }),
+    }).then((response) => {
+        fetch("api/get-times", {
+            method: "GET",
+        });
     });
     //fetch("api/get-times", {
     //    method: "GET",
