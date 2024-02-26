@@ -21,6 +21,9 @@ def create_times():
 
 @bp.route("/get-times", methods=['GET'])
 def get_times():
-    print("Getting available times")
+    date = request.args.get('current_date')
+    available_times = Schedule.query.filter_by(appt_date=date, status=False).all()
+    for time in available_times:
+        print(time.appt_hour)
     return {'message': "This is a test too"}
 

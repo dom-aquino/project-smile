@@ -17,7 +17,7 @@ def appointment():
                            contact_number=form.contact_number.data,
                            appt_date=form.appt_date.data,
                            appt_time=form.appt_time.data,
-                           service=form.service.data)
+                           service=form.service.data,)
         db.session.add(appt)
         db.session.commit()
         flash('Appointment has been set successfully. Date: {}, Time: {}'.format(

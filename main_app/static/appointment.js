@@ -41,6 +41,13 @@ function updateTimeSelection() {
     timeControl.max = "18:00";
 }
 
+function getTimes(date) {
+    fetch("api/get-times?current_date=" + date.value, {
+        method: "GET",
+    }).then((response) => {
+    });
+}
+
 function onDateChange(date) {
     fetch("api/create-times", {
         method: "POST",
@@ -49,13 +56,8 @@ function onDateChange(date) {
             date: date.value
         }),
     }).then((response) => {
-        fetch("api/get-times", {
-            method: "GET",
-        });
+        getTimes(date);
     });
-    //fetch("api/get-times", {
-    //    method: "GET",
-    //});
 }
 
 document.addEventListener("DOMContentLoaded", function() {
