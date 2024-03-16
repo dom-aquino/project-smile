@@ -21,7 +21,7 @@ class AppointmentForm(FlaskForm):
                                      (6, '3:00 - 4:00'),
                                      (7, '4:00 - 5:00'),
                                      (8, '5:00 - 6:00')],
-                            render_kw={"class": "appt_time"})
+                            render_kw={"id": "appt_time"})
     service = SelectField('Type of Service',
                           choices=[('consultation', 'Consultation'),
                                    ('teeth-whitening', 'Teeth Whitening'),
@@ -29,6 +29,6 @@ class AppointmentForm(FlaskForm):
                                    ('root-canal', 'Root Canal'),
                                    ('teeth-extraction', 'Teeth Extraction'),
                                    ('dental-filling', 'Dental Filling (Pasta)'),
-                                   ('cleaning', 'Oral Propylaxis (Cleaning)')])
+                                   ('cleaning', 'Oral Propylaxis (Cleaning)')],)
     submit = SubmitField('Submit')
 

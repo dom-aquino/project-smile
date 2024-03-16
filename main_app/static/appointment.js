@@ -35,16 +35,32 @@ function updateDateSelection() {
     dateControl.max = maxDate;
 }
 
-function updateTimeSelection() {
-    const timeControl = document.querySelector('input[name="appt_time"]');
-    timeControl.value = timeControl.min = "09:00";
-    timeControl.max = "18:00";
+function updateTimeSelection(bookedTimes) {
+    if (bookedTimes.length === 0) {
+        return;
+    }
+    console.log("Booked times:", bookedTimes);
+    const selectTime = document.getElementById("appt_time");
+    for (var i = 0; i < selectTime.options.length; ++i) {
+        console.log("Value:", selectTime.options[i].value, "Text:", selectTime.options[i].text);
+        var option = selectTime.options[i];
+        if (bookedTimes.includes(option.value)) {
+            option.disabled = true;
+        }
+    }
 }
 
-function getTimes(date) {
-    fetch("api/get-times?current_date=" + date.value, {
+function getBookedTimes(date) {
+    fetch("api/get-booked-times?current_date=" + date.value, {
         method: "GET",
     }).then((response) => {
+        if (!response.ok) {
+            throw new Error("Response is not okay!");
+        }
+        return response.json();
+    }).then(data => {
+        console.log(data);
+        updateTimeSelection(data);
     });
 }
 
@@ -56,12 +72,12 @@ function onDateChange(date) {
             date: date.value
         }),
     }).then((response) => {
-        getTimes(date);
+        getBookedTimes(date);
     });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     updateDateSelection();
-    updateTimeSelection();
+    //updateTimeSelection();
 });
 
