@@ -1,4 +1,4 @@
-from main_app.models import db, Appointment
+from main_app.models import db, Appointment, Schedule
 from flask import render_template, flash
 from main_app import app
 from main_app.forms import AppointmentForm
@@ -12,16 +12,21 @@ def index():
 def appointment():
     form = AppointmentForm()
     if form.validate_on_submit():
-        appt = Appointment(first_name=form.first_name.data,
-                           last_name=form.last_name.data,
-                           contact_number=form.contact_number.data,
-                           appt_date=form.appt_date.data,
-                           appt_time=form.appt_time.data,
-                           service=form.service.data,)
-        db.session.add(appt)
+        appointment = Appointment(first_name=form.first_name.data,
+                                  last_name=form.last_name.data,
+                                  contact_number=form.contact_number.data,
+                                  service=form.service.data)
+        db.session.add(appointment)
+
+        schedule = Schedule(appt_date=form.appt_date.data,
+                            appt_time=form.appt_time.data,
+                            status=True, appointment=appointment)
+        db.session.add(schedule)
         db.session.commit()
+
         flash('Appointment has been set successfully. Date: {}, Time: {}'.format(
             form.appt_date.data, form.appt_time.data))
+
     return render_template("appointment.html", title="Appointment", form=form)
 
 @app.route("/admin", methods=['GET', 'POST'])

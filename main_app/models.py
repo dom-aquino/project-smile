@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from main_app import db
 
 class Appointment(db.Model):
@@ -5,15 +6,16 @@ class Appointment(db.Model):
     first_name = db.Column(db.String(32), nullable=False)
     last_name = db.Column(db.String(32), nullable=False)
     contact_number = db.Column(db.String(11), nullable=False)
-    appt_date = db.Column(db.Date(), nullable=False)
-    appt_time = db.Column(db.Time(), nullable=False)
     service = db.Column(db.String(64), nullable=False)
+    schedule = db.relationship('Schedule', backref='appointment', lazy=True)
 
 class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     appt_date = db.Column(db.Date(), nullable=False)
-    appt_hour = db.Column(db.Integer, nullable=False)
+    appt_time = db.Column(db.Integer, nullable=False)
     status = db.Column(db.Boolean, nullable=False, default=False)
+    appt_id = db.Column(db.Integer, db.ForeignKey('appointment.id'),
+                        nullable=False)
 
 #  9-10am - 1
 #  10-11am - 2
