@@ -36,8 +36,8 @@ function updateDateSelection() {
 }
 
 function updateTimeSelection() {
-    let dateNow = getMinDate(new Date());
-    getBookedTimes(dateNow);
+    let selectedDate = document.querySelector('input[name="appt_date"]');
+    getBookedTimes(selectedDate);
 }
 
 function disableBookedTimeSlots(bookedTimeSlots) {
@@ -50,9 +50,13 @@ function disableBookedTimeSlots(bookedTimeSlots) {
         var option = selectTimeElement.options[i];
         if (bookedTimeSlots.includes(option.value*1)) {
             option.disabled = true;
-        } else if (isMinValueSet == false) {
-            selectTimeElement.value = option.value*1;
-            isMinValueSet = true;
+        } else {
+            option.disabled = false;
+            if (isMinValueSet == false) {
+                selectTimeElement.value = option.value*1;
+                option.selected = true;
+                isMinValueSet = true;
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
-"""Create relationship between appointment and schedule
+"""Initial commit
 
-Revision ID: 49011ed54e56
+Revision ID: 2d1be7fc6c31
 Revises: 
-Create Date: 2024-03-16 19:00:03.657962
+Create Date: 2024-03-17 16:04:16.678542
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '49011ed54e56'
+revision = '2d1be7fc6c31'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade():
     op.create_table('schedule',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('appt_date', sa.Date(), nullable=False),
-    sa.Column('appt_hour', sa.Integer(), nullable=False),
+    sa.Column('appt_time', sa.Integer(), nullable=False),
     sa.Column('status', sa.Boolean(), nullable=False),
     sa.Column('appt_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['appt_id'], ['appointment.id'], ),

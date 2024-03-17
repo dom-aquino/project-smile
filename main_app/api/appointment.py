@@ -15,16 +15,16 @@ def create_times():
     #                                status=False)
     #        db.session.add(new_schedule)
     #        db.session.commit()
+    output = {'message': "This is a test"}
 
-    return {'message': "This is a test"}
-
+    return jsonify(output), 200
 
 @bp.route("/get-booked-times", methods=['GET'])
 def get_booked_times():
     date = request.args.get('current_date')
     booked_schedules = Schedule.query.filter_by(appt_date=date,
                                                 status=True).all()
-    output = [1, 5]
+    output = []
     for schedule in booked_schedules:
         output.append(schedule.appt_time)
 

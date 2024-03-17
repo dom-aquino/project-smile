@@ -16,8 +16,8 @@
                 <td>{{ appt.first_name }}</td>
                 <td>{{ appt.last_name }}</td>
                 <td>{{ appt.contact_number }}</td>
-                <td>{{ appt.appt_date }}</td>
-                <td>{{ appt.appt_time }}</td>
+                <td>{{ appt.schedule.appt_date }}</td>
+                <td>{{ appt.schedule.appt_time }}</td>
                 <td>{{ appt.service }}</td>
             </tr>
         {% endfor %}
