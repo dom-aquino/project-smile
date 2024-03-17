@@ -23,11 +23,10 @@ def create_times():
 def get_booked_times():
     date = request.args.get('current_date')
     booked_schedules = Schedule.query.filter_by(appt_date=date,
-                                         status=True).all()
-    output = [1]
+                                                status=True).all()
+    output = [1, 5]
     for schedule in booked_schedules:
         output.append(schedule.appt_time)
-        print("Date:", schedule.appt_date, "Time:", schedule.appt_time, "Status:", schedule.status)
 
     return jsonify(output)
 

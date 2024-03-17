@@ -35,15 +35,24 @@ function updateDateSelection() {
     dateControl.max = maxDate;
 }
 
-function updateTimeSelection(bookedTimes) {
-    if (bookedTimes.length === 0) {
+function updateTimeSelection() {
+    let dateNow = getMinDate(new Date());
+    getBookedTimes(dateNow);
+}
+
+function disableBookedTimeSlots(bookedTimeSlots) {
+    if (bookedTimeSlots.length === 0) {
         return;
     }
-    const selectTime = document.getElementById("appt_time");
-    for (var i = 0; i < selectTime.options.length; ++i) {
-        var option = selectTime.options[i];
-        if (bookedTimes.includes(option.value*1)) {
+    const selectTimeElement = document.getElementById("appt_time");
+    let isMinValueSet = false;
+    for (var i = 0; i < selectTimeElement.options.length; ++i) {
+        var option = selectTimeElement.options[i];
+        if (bookedTimeSlots.includes(option.value*1)) {
             option.disabled = true;
+        } else if (isMinValueSet == false) {
+            selectTimeElement.value = option.value*1;
+            isMinValueSet = true;
         }
     }
 }
@@ -54,11 +63,11 @@ function getBookedTimes(date) {
     }).then((response) => {
         if (!response.ok) {
             throw new Error("Response is not okay!");
+        } else {
+            return response.json();
         }
-        return response.json();
     }).then(data => {
-        console.log(data);
-        updateTimeSelection(data);
+        disableBookedTimeSlots(data);
     });
 }
 
@@ -70,12 +79,18 @@ function onDateChange(date) {
             date: date.value
         }),
     }).then((response) => {
+        if (!response.ok) {
+            throw new Error("Response is not okay!");
+        } else {
+            return response.json();
+        }
+    }).then(data => {
         getBookedTimes(date);
     });
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     updateDateSelection();
-    //updateTimeSelection();
+    updateTimeSelection();
 });
 
