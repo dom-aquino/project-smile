@@ -39,12 +39,10 @@ function updateTimeSelection(bookedTimes) {
     if (bookedTimes.length === 0) {
         return;
     }
-    console.log("Booked times:", bookedTimes);
     const selectTime = document.getElementById("appt_time");
     for (var i = 0; i < selectTime.options.length; ++i) {
-        console.log("Value:", selectTime.options[i].value, "Text:", selectTime.options[i].text);
         var option = selectTime.options[i];
-        if (bookedTimes.includes(option.value)) {
+        if (bookedTimes.includes(option.value*1)) {
             option.disabled = true;
         }
     }
