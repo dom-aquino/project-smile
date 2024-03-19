@@ -40,7 +40,8 @@ function updateTimeSelection() {
     getBookedTimes(selectedDate);
 }
 
-// The selected attribute is not being cleared
+// The selected attribute is not being cleared even after date change
+// Looking for solution...
 function refreshTimeSlots() {
     const selectTimeElement = document.getElementById("appt_time");
     for (var i = 0; i < selectTimeElement.options.length; ++i) {
