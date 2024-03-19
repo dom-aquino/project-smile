@@ -40,10 +40,15 @@ function updateTimeSelection() {
     getBookedTimes(selectedDate);
 }
 
-function disableBookedTimeSlots(bookedTimeSlots) {
-    if (bookedTimeSlots.length === 0) {
-        return;
+// The selected attribute is not being cleared
+function refreshTimeSlots() {
+    const selectTimeElement = document.getElementById("appt_time");
+    for (var i = 0; i < selectTimeElement.options.length; ++i) {
+        selectTimeElement.options[i].disabled = false;
     }
+}
+
+function disableBookedTimeSlots(bookedTimeSlots) {
     const selectTimeElement = document.getElementById("appt_time");
     let isMinValueSet = false;
     for (var i = 0; i < selectTimeElement.options.length; ++i) {
@@ -51,10 +56,8 @@ function disableBookedTimeSlots(bookedTimeSlots) {
         if (bookedTimeSlots.includes(option.value*1)) {
             option.disabled = true;
         } else {
-            option.disabled = false;
             if (isMinValueSet == false) {
                 selectTimeElement.value = option.value*1;
-                option.selected = true;
                 isMinValueSet = true;
             }
         }
@@ -71,7 +74,10 @@ function getBookedTimes(date) {
             return response.json();
         }
     }).then(data => {
-        disableBookedTimeSlots(data);
+        refreshTimeSlots();
+        if (data.length != 0) {
+            disableBookedTimeSlots(data);
+        }
     });
 }
 
