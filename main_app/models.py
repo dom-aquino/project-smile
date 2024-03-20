@@ -1,5 +1,6 @@
 from sqlalchemy.orm import backref
 from main_app import db
+from main_app.helpers import TIME_SLOTS_DICT
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,6 +10,14 @@ class Appointment(db.Model):
     service = db.Column(db.String(64), nullable=False)
     schedule = db.relationship('Schedule', backref='appointment', lazy=True)
 
+    def get_appt_date(self):
+        sched = Schedule.query.filter(self.id == Schedule.appt_id).first();
+        return sched.appt_date
+
+    def get_appt_time(self):
+        sched = Schedule.query.filter(self.id == Schedule.appt_id).first();
+        return TIME_SLOTS_DICT[sched.appt_time]
+
 class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     appt_date = db.Column(db.Date(), nullable=False)
@@ -16,13 +25,4 @@ class Schedule(db.Model):
     status = db.Column(db.Boolean, nullable=False, default=False)
     appt_id = db.Column(db.Integer, db.ForeignKey('appointment.id'),
                         nullable=False)
-
-#  9-10am - 1
-#  10-11am - 2
-#  11-12pm - 3
-#  1-2pm - 4
-#  2-3pm - 5
-#  3-4pm - 6
-#  4-5pm - 7
-#  5-6pm - 8
 

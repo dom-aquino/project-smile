@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, StringField, TimeField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Length
+from main_app.helpers import TIME_SLOTS
 
 class AppointmentForm(FlaskForm):
     first_name = StringField('First Name', validators=[DataRequired(),
@@ -12,15 +13,7 @@ class AppointmentForm(FlaskForm):
                                                                       max=11)])
     appt_date = DateField('Appointment Date', validators=[DataRequired()],
                           render_kw={"class": "appt_date"})
-    appt_time = SelectField('Appointment Time',
-                            choices=[(1, '9:00 - 10:00'),
-                                     (2, '10:00 - 11:00'),
-                                     (3, '11:00 - 12:00'),
-                                     (4, '1:00 - 2:00'),
-                                     (5, '2:00 - 3:00'),
-                                     (6, '3:00 - 4:00'),
-                                     (7, '4:00 - 5:00'),
-                                     (8, '5:00 - 6:00')],
+    appt_time = SelectField('Appointment Time', choices=TIME_SLOTS,
                             render_kw={"id": "appt_time"})
     service = SelectField('Type of Service',
                           choices=[('consultation', 'Consultation'),
