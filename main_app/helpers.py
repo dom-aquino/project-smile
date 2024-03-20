@@ -9,3 +9,12 @@ TIME_SLOTS = [(1, '9:00 - 10:00'),
 
 TIME_SLOTS_DICT = dict(TIME_SLOTS)
 
+SERVICES = [('consultation', 'Consultation'),
+            ('teeth-whitening', 'Teeth Whitening'),
+            ('teeth-braces', 'Teeth Braces'),
+            ('root-canal', 'Root Canal'),
+            ('teeth-extraction', 'Teeth Extraction'),
+            ('dental-filling', 'Dental Filling (Pasta)'),
+            ('cleaning', 'Oral Propylaxis (Cleaning)')]
+
+SERVICES_DICT = dict(SERVICES)

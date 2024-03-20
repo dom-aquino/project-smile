@@ -1,6 +1,6 @@
-from sqlalchemy.orm import backref
 from main_app import db
-from main_app.helpers import TIME_SLOTS_DICT
+from main_app.helpers import TIME_SLOTS_DICT, SERVICES_DICT
+from sqlalchemy.orm import backref
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +17,9 @@ class Appointment(db.Model):
     def get_appt_time(self):
         sched = Schedule.query.filter(self.id == Schedule.appt_id).first();
         return TIME_SLOTS_DICT[sched.appt_time]
+
+    def get_service(self):
+        return SERVICES_DICT[self.service]
 
 class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
