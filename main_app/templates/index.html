@@ -1,6 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to Project Smile!</h1>
+    <h1>Welcome to the Project Smile!</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.first_name.label }}:
+            {{ form.first_name(size=32) }}<br>
+            {% for error in form.first_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.last_name.label }}:
+            {{ form.last_name(size=32) }}<br>
+            {% for error in form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.contact_number.label }}:
+            {{ form.contact_number(size=12) }}<br>
+            {% for error in form.contact_number.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.appt_date.label }}:
+            {{ form.appt_date(**{"onchange": "onDateChange(form.appt_date)"}) }}
+        </p>
+        <p>
+            {{ form.appt_time.label }}:
+            {{ form.appt_time() }}
+        </p>
+        <p>
+            {{ form.service.label }}:
+            {{ form.service() }}
+        </p>
+        <p>
+            {{ form.submit(**{"onclick": "onDateChange(form.appt_date)"}) }}
+        </p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </form>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
 {% endblock %}
 
