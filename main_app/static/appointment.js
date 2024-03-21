@@ -40,8 +40,6 @@ function updateTimeSelection() {
     getBookedTimes(selectedDate);
 }
 
-// The selected attribute is not being cleared even after date change
-// Looking for solution...
 function refreshTimeSlots() {
     const selectTimeElement = document.getElementById("appt_time");
     for (var i = 0; i < selectTimeElement.options.length; ++i) {
@@ -83,21 +81,7 @@ function getBookedTimes(date) {
 }
 
 function onDateChange(date) {
-    fetch("api/create-times", {
-        method: "POST",
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({
-            date: date.value
-        }),
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error("Response is not okay!");
-        } else {
-            return response.json();
-        }
-    }).then(data => {
-        getBookedTimes(date);
-    });
+    getBookedTimes(date);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
