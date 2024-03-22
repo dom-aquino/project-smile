@@ -3,7 +3,6 @@ from flask import render_template, flash
 from main_app import app
 from main_app.forms import AppointmentForm
 
-# Delete appointment.html file
 @app.route("/")
 @app.route("/index")
 def index():
