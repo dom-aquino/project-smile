@@ -1,19 +1,23 @@
-home = new Vue({
+const { createApp } = Vue
+
+createApp({
     delimeters: ['[[', ']]'],
 
     mounted() {
-        updateDateSelection();
-        updateTimeSelection();
+        this.updateDateSelection();
+        this.updateTimeSelection();
     },
 
-    data: {
+    data() {
+        return {
+        }
     },
 
     methods: {
         updateDateSelection() {
             let dateNow = new Date();
-            let minDate = getMinDate(dateNow);
-            let maxDate = getMaxDate(minDate);
+            let minDate = this.getMinDate(dateNow);
+            let maxDate = this.getMaxDate(minDate);
             const dateControl = document.querySelector('input[name="appt_date"]');
             dateControl.value = dateControl.min = minDate;
             dateControl.max = maxDate;
@@ -21,7 +25,11 @@ home = new Vue({
 
         updateTimeSelection() {
             let selectedDate = document.querySelector('input[name="appt_date"]');
-            getBookedTimes(selectedDate);
+            this.getBookedTimes(selectedDate);
+        },
+
+        onDateChange(date) {
+            this.getBookedTimes(date);
         },
 
         getMinDate(dateNow) {
@@ -33,7 +41,7 @@ home = new Vue({
         },
 
         getMaxDate(minDate) {
-            let dateAfterOneMonth = addMonths(new Date(minDate), 3);
+            let dateAfterOneMonth = this.addMonths(new Date(minDate), 3);
             let month = String(dateAfterOneMonth.getMonth() + 1).padStart(2, '0');
             let day = String(dateAfterOneMonth.getDate()).padStart(2, '0');
             let year = dateAfterOneMonth.getFullYear();
@@ -62,9 +70,9 @@ home = new Vue({
                     return response.json();
                 }
             }).then(data => {
-                refreshTimeSlots();
+                this.refreshTimeSlots();
                 if (data.length != 0) {
-                    disableBookedTimeSlots(data);
+                    this.disableBookedTimeSlots(data);
                 }
             });
         },
@@ -93,5 +101,5 @@ home = new Vue({
         },
 
     }
-})
+}).mount('#app')
 

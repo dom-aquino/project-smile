@@ -11,8 +11,10 @@
         </div>
         <hr>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        {% block content %}
-        {% endblock %}
+        <div id="app">
+            {% block content %}
+            {% endblock %}
+        </div>
         {% block script %}
         {% endblock %}
     </body>
