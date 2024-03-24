@@ -10,6 +10,7 @@ createApp({
 
     data() {
         return {
+            date: null
         }
     },
 
@@ -28,8 +29,8 @@ createApp({
             this.getBookedTimes(selectedDate);
         },
 
-        onDateChange(date) {
-            this.getBookedTimes(date);
+        onDateChange() {
+            this.getBookedTimes(this.date);
         },
 
         getMinDate(dateNow) {
@@ -61,7 +62,7 @@ createApp({
         },
 
         getBookedTimes(date) {
-            fetch("api/get-booked-times?current_date=" + date.value, {
+            fetch("api/get-booked-times?current_date=" + date, {
                 method: "GET",
             }).then((response) => {
                 if (!response.ok) {
@@ -99,7 +100,6 @@ createApp({
                 }
             }
         },
-
     }
 }).mount('#app')
 
