@@ -26,8 +26,8 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.appt_date.label }}
-            {{ form.appt_date(**{'v-model': 'date', "@change": "onDateChange()"}) }}
+            {{ form.appt_date.label }}:
+            {{ form.appt_date(**{'v-model': 'date', "@change": "updateTimeSelection()"}) }}
         </p>
         <p>
             {{ form.appt_time.label }}:
@@ -38,7 +38,7 @@
             {{ form.service() }}
         </p>
         <p>
-            {{ form.submit(**{"@click": "onDateChange()"}) }}
+            {{ form.submit(**{"@click": "updateTimeSelection()"}) }}
         </p>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

@@ -20,16 +20,11 @@ createApp({
             let minDate = this.getMinDate(dateNow);
             let maxDate = this.getMaxDate(minDate);
             const dateControl = document.querySelector('input[name="appt_date"]');
-            dateControl.value = dateControl.min = minDate;
+            dateControl.value = dateControl.min = this.date = minDate;
             dateControl.max = maxDate;
         },
 
         updateTimeSelection() {
-            let selectedDate = document.querySelector('input[name="appt_date"]');
-            this.getBookedTimes(selectedDate);
-        },
-
-        onDateChange() {
             this.getBookedTimes(this.date);
         },
 
