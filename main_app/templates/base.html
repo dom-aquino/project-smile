@@ -12,21 +12,39 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="{{ url_for('static', filename='primary_logo.png') }}"
-                            alt="Logo" width="200" height="120"
+                            alt="Logo" width="170" height="auto"
                             class="d-inline-block align-text-top">
                     </a>
                     <ul class="nav justify-content-center">
-                      <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">About Us</a>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">ABOUT US</a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Meet the Doctors</a></li>
+                            <li><a class="dropdown-item" href="#">FAQs</a></li>
+                            <li><a class="dropdown-item" href="#">Locations</a></li>
+                            <li><a class="dropdown-item" href="#">Contact Us</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">SERVICES</a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Consultation</a></li>
+                            <li><a class="dropdown-item" href="#">Teeth Whitening</a></li>
+                            <li><a class="dropdown-item" href="#">Teeth Braces</a></li>
+                            <li><a class="dropdown-item" href="#">Root Canal</a></li>
+                            <li><a class="dropdown-item" href="#">Tooth Extraction</a></li>
+                            <li><a class="dropdown-item" href="#">Dental Filling</a></li>
+                            <li><a class="dropdown-item" href="#">Oral Propylaxis</a></li>
+                          </ul>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Services</a>
+                          <a class="nav-link active" aria-current="page" href="#">BEFORE & AFTER</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Before and After</a>
+                          <a class="nav-link active" aria-current="page" href="#">CONTACT</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                          <button class="btn btn-outline-success me-2" type="button">BOOK ONLINE</button>
                       </li>
                     </ul>
                 </div>
@@ -40,8 +58,10 @@
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <div id="app">
+            <div class="container">
             {% block content %}
             {% endblock %}
+            </div>
         </div>
         {% block script %}
         {% endblock %}
