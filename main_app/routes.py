@@ -1,7 +1,7 @@
-from main_app.models import db, Appointment, Schedule
 from flask import render_template, flash
 from main_app import app
 from main_app.forms import AppointmentForm
+from main_app.models import db, Appointment, Schedule
 
 @app.route("/")
 @app.route("/index")
@@ -26,16 +26,6 @@ def index():
     return render_template("index.html", title="Welcome", form=form)
 
 
-@app.route("/meet-the-doctors", methods=['GET'])
-def meet_the_doctors():
-    return render_template("meet_the_doctors.html", title="Meet the Doctors")
-
-
-@app.route("/faqs", methods=['GET'])
-def faqs():
-    return render_template("faqs.html", title="FAQs")
-
-
 @app.route("/appointment", methods=['GET', 'POST'])
 def appointment():
     form = AppointmentForm()
@@ -56,6 +46,7 @@ def appointment():
             form.appt_date.data, form.appt_time.data))
 
     return render_template("appointment.html", title="Appointment", form=form)
+
 
 @app.route("/admin", methods=['GET', 'POST'])
 def admin():
