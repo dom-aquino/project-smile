@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="mt-0">
-        <video width="100%" height="auto" autoplay loop muted>
-            <source src="{{ url_for('static', filename='/assets/promo_0.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <!--
     <h1>Welcome to Project Smile!</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -57,10 +50,10 @@
         {% endif %}
         {% endwith %}
     </form>
-    -->
+   
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='appointment_new.js') }}">
+    <script src="{{ url_for('static', filename='appointment.js') }}">
     </script>
 {% endblock %}
