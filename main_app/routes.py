@@ -26,6 +26,16 @@ def index():
     return render_template("index.html", title="Welcome", form=form)
 
 
+@app.route("/meet-the-doctors", methods=['GET'])
+def meet_the_doctors():
+    return render_template("meet_the_doctors.html", title="Meet the Doctors")
+
+
+@app.route("/faqs", methods=['GET'])
+def faqs():
+    return render_template("faqs.html", title="FAQs")
+
+
 @app.route("/appointment", methods=['GET', 'POST'])
 def appointment():
     form = AppointmentForm()

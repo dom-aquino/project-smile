@@ -1,5 +1,6 @@
 from main_app import db
 from main_app.helpers import TIME_SLOTS_DICT, SERVICES_DICT
+from sqlalchemy.orm import backref
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
