@@ -13,3 +13,6 @@ app.register_blueprint(api_bp)
 
 from main_app import routes, models
 
+if __name__ == '__main__':
+    app.run(debug=True, port=8080)
+

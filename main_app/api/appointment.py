@@ -19,6 +19,7 @@ def create_appointment():
         db.session.commit()
     except KeyError as e:
         error_message = f'Missing key: {e.args[0]}'
+        db.session.flush()
         return jsonify({'error': error_message}), 400
     except Exception as e:
         error_message = str(e)
