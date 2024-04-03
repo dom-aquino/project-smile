@@ -4,7 +4,7 @@ from main_app.forms import AppointmentForm
 from main_app.models import db, Appointment, Schedule
 
 @app.route("/")
-@app.route("/index")
+@app.route("/index", methods=['GET', 'POST'])
 def index():
     form = AppointmentForm()
     if form.validate_on_submit():

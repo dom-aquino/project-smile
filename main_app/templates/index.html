@@ -38,7 +38,7 @@
             {{ form.service() }}
         </p>
         <p>
-            {{ form.submit(**{"@click": "updateTimeSelection()"}) }}
+            {{ form.submit() }}
         </p>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
