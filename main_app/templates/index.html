@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Welcome to Project Smile!</h1>
+    <h1>{{ message }}</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
@@ -27,7 +28,7 @@
         </p>
         <p>
             {{ form.appt_date.label }}:
-            {{ form.appt_date(**{'v-model': 'date', "@change": "updateTimeSelection()"}) }}
+            {{ form.appt_date(**{'v-model': 'selectedDate'}) }}
         </p>
         <p>
             {{ form.appt_time.label }}:
@@ -50,9 +51,8 @@
         {% endif %}
         {% endwith %}
     </form>
-   
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
+    <script src="{{ url_for('static', filename='appointment_new.js') }}"></script>
 {% endblock %}
