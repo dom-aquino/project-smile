@@ -12,9 +12,10 @@ def create_appointment():
                                   service=request.json['service'])
         db.session.add(appointment)
 
-        schedule = Schedule(appt_date=datetime.strptime(request.json['appt_date'], "%Y-%m-%d").date(),
+        schedule = Schedule(appt_date=datetime.strptime(request.json['appt_date'],
+                                                        "%Y-%m-%d").date(),
                             appt_time=request.json['appt_time'],
-                            status=True, appointment=appointment)
+                            appointment=appointment)
         db.session.add(schedule)
         db.session.commit()
     except KeyError as e:
@@ -32,8 +33,7 @@ def create_appointment():
 @bp.route("/get-booked-times", methods=['GET'])
 def get_booked_times():
     date = request.args.get('current_date')
-    booked_schedules = Schedule.query.filter_by(appt_date=date,
-                                                status=True).all()
+    booked_schedules = Schedule.query.filter_by(appt_date=date).all()
     output = [schedule.appt_time for schedule in booked_schedules]
 
     return jsonify(output)

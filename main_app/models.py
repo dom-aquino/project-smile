@@ -24,7 +24,6 @@ class Schedule(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     appt_date = db.Column(db.Date(), nullable=False)
     appt_time = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.Boolean, nullable=False, default=False)
     appt_id = db.Column(db.Integer, db.ForeignKey('appointment.id'),
                         nullable=False)
 
