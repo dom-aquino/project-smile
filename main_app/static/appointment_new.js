@@ -52,14 +52,14 @@ createApp({
         },
 
         addMonths(date, count) {
-          if (date && count) {
-            var m, d = (date = new Date(+date)).getDate();
-            date.setMonth(date.getMonth() + count, 1);
-            m = date.getMonth();
-            date.setDate(d);
-            if (date.getMonth() !== m) date.setDate(0);
-          }
-          return date;
+            if (date && count) {
+                var m, d = (date = new Date(+date)).getDate();
+                date.setMonth(date.getMonth() + count, 1);
+                m = date.getMonth();
+                date.setDate(d);
+                if (date.getMonth() !== m) date.setDate(0);
+            }
+            return date;
         },
 
         getBookedTimes() {
@@ -67,19 +67,20 @@ createApp({
                 method: "GET",
             }).then((response) => {
                 if (!response.ok) {
-                    throw new Error("Response is not okay!");
+                    throw new Error("There's a problem when fetching booked times for:",
+                        this.selectedDate);
                 } else {
                     return response.json();
                 }
             }).then(data => {
-                this.refreshTimeSlots();
+                this.enableAllTimeSlots();
                 if (data.length != 0) {
                     this.disableBookedTimeSlots(data);
                 }
             });
         },
 
-        refreshTimeSlots() {
+        enableAllTimeSlots() {
             const selectTimeElement = document.getElementById("appt_time");
             for (var i = 0; i < selectTimeElement.options.length; ++i) {
                 selectTimeElement.options[i].disabled = false;
