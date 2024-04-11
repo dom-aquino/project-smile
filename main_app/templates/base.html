@@ -10,7 +10,7 @@
         <div class="container is-fluid">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <a class="navbar-brand ml-4" href="/">
-                    <img src="{{ url_for('static', filename='primary_logo.png') }}"
+                    <img src="{{ url_for('static', filename='/assets/primary_logo.png') }}"
                         width="200" height="100">
                 </a>
                 <div class="navbar-menu">
@@ -21,16 +21,16 @@
                                     About Us
                                 </a>
                                 <div class="navbar-dropdown">
-                                    <a class="navbar-item" href="#">
+                                    <a class="navbar-item" href="/meet-the-doctors">
                                         Meet the Doctors
                                     </a>
-                                    <a class="navbar-item" href="#">
+                                    <a class="navbar-item" href="/faqs">
                                         FAQs
                                     </a>
-                                    <a class="navbar-item" href="#">
+                                    <a class="navbar-item" href="/locations">
                                         Locations
                                     </a>
-                                    <a class="navbar-item" href="#">
+                                    <a class="navbar-item" href="/contact-us">
                                         Contact Us
                                     </a>
                                 </div>
@@ -79,12 +79,12 @@
                 </div>
             </nav>
         </div>
-        <!--
         <div id="app">
-            {% block content %}
-            {% endblock %}
+            <div class="container is-fluid">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
-        -->
         {% block script %}
         {% endblock %}
     </body>
