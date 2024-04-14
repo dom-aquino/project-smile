@@ -3,14 +3,20 @@
 {% block content %}
     <h1 class="has-text-centered is-size-1">Meet the Doctors</h1>
     <div class="container columns mt-5">
-        <div class="column is-one-third has-text-centered">
-            <img src="{{ url_for('static', filename='/assets/dentist_0.jpg') }}" width=400 height=auto>
-        </div>
-        <div class="column is-half has-text-left">
-            <h1 class="is-size-2">Dr. Kenwood</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Penatibus et magnis dis parturient montes nascetur ridiculus mus. In nisl nisi scelerisque eu. Ut porttitor leo a diam. Volutpat commodo sed egestas egestas fringilla. Dui faucibus in ornare quam viverra. Fames ac turpis egestas integer eget aliquet nibh praesent. Aliquam faucibus purus in massa. Aliquam nulla facilisi cras fermentum odio eu. Aliquam ut porttitor leo a diam sollicitudin. Egestas erat imperdiet sed euismod.<br><br>
-            Dolor sit amet consectetur adipiscing. Tempus egestas sed sed risus pretium quam vulputate. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Eget velit aliquet sagittis id consectetur purus ut faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Lectus urna duis convallis convallis tellus id interdum velit laoreet. Augue interdum velit euismod in pellentesque massa placerat duis. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Amet justo donec enim diam vulputate ut. Luctus accumsan tortor posuere ac ut consequat semper. Et malesuada fames ac turpis egestas integer eget aliquet. Orci eu lobortis elementum nibh. Massa enim nec dui nunc mattis enim ut tellus elementum.<br><br>
+        <div class="scroll-element js-scroll">
+            <div class="column is-one-third has-text-centered">
+                <img src="{{ url_for('static', filename='/assets/dentist_0.jpg') }}" width=400 height=auto>
+            </div>
+            <div class="column is-two-third has-text-left">
+                <h1 class="is-size-2">Dr. Kenwood</h1>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Penatibus et magnis dis parturient montes nascetur ridiculus mus. In nisl nisi scelerisque eu. Ut porttitor leo a diam. Volutpat commodo sed egestas egestas fringilla. Dui faucibus in ornare quam viverra. Fames ac turpis egestas integer eget aliquet nibh praesent. Aliquam faucibus purus in massa. Aliquam nulla facilisi cras fermentum odio eu. Aliquam ut porttitor leo a diam sollicitudin. Egestas erat imperdiet sed euismod.<br><br>
+                Dolor sit amet consectetur adipiscing. Tempus egestas sed sed risus pretium quam vulputate. Neque volutpat ac tincidunt vitae semper quis lectus nulla. Eget velit aliquet sagittis id consectetur purus ut faucibus. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Lectus urna duis convallis convallis tellus id interdum velit laoreet. Augue interdum velit euismod in pellentesque massa placerat duis. Vestibulum morbi blandit cursus risus at ultrices mi tempus. Amet justo donec enim diam vulputate ut. Luctus accumsan tortor posuere ac ut consequat semper. Et malesuada fames ac turpis egestas integer eget aliquet. Orci eu lobortis elementum nibh. Massa enim nec dui nunc mattis enim ut tellus elementum.<br><br>
+            </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for("static", filename="meet_the_doctors.js") }}"></script>
 {% endblock %}
 
