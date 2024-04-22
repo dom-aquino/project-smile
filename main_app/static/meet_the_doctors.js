@@ -3,16 +3,12 @@ window.addEventListener('scroll', () => {
 })
 
 const scrollElements = document.querySelectorAll(".js-scroll");
-/*
-scrollElements.forEach((el) => {
-    el.style.opacity = 0;
-})
-*/
 
-const elementInView = (el) => {
+const elementInView = (el, percentageScrolled = 100) => {
     const elementTop = el.getBoundingClientRect().top;
     return (elementTop <=
-        (window.innerHeight || document.documentElement.clientHeight));
+        (window.innerHeight || document.documentElement.clientHeight) 
+        * (percentageScrolled / 100));
 };
 
 const displayScrollElement = (element) => {
@@ -21,7 +17,7 @@ const displayScrollElement = (element) => {
 
 const handleScrollAnimation = () => {
     scrollElements.forEach((el) => {
-        if (elementInView(el)) {
+        if (elementInView(el, 80)) {
             displayScrollElement(el);
         }
     })
