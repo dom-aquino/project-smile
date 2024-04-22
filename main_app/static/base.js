@@ -1,3 +1,7 @@
 window.onload = function() {
-    document.querySelector('.to-fade-in').classList.add('fade-in');
+    const elementsToFadeIn = document.querySelectorAll('.to-fade-in');
+    elementsToFadeIn.forEach((el) => {
+        el.classList.add('fade-in');
+    })
 }
+
