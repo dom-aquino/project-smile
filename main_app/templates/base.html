@@ -9,80 +9,77 @@
     <body>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <script src="{{ url_for('static', filename='/base.js') }}"></script>
-        <div class="container is-fluid to-fade-in">
-            <nav class="navbar" role="navigation" aria-label="main navigation">
-                <a class="navbar-brand ml-4" href="/">
-                    <img src="{{ url_for('static', filename='/assets/primary_logo.png') }}"
-                        width="200" height="100">
-                </a>
-                <div class="navbar-menu">
-                    <div class="navbar-end">
-                        <div class="navbar-item">
-                            <div class="navbar-item has-dropdown is-hoverable">
-                                <a class="navbar-item" href="#">
-                                    About Us
-                                </a>
-                                <div class="navbar-dropdown">
-                                    <a class="navbar-item" href="/meet-the-doctors">
-                                        Meet the Doctors
-                                    </a>
-                                    <a class="navbar-item" href="/locations">
-                                        Locations
-                                    </a>
-                                    <a class="navbar-item" href="/faqs">
-                                        FAQs
-                                    </a>
-                                    <a class="navbar-item" href="/contact-us">
-                                        Contact Us
-                                    </a>
-                                </div>
-                            </div>
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-item" href="#">
-                                Services
+        <nav class="navbar is-fluid to-fade-in" role="navigation" aria-label="main navigation">
+            <a class="navbar-brand ml-4" href="/">
+                <img src="{{ url_for('static', filename='/assets/primary_logo.png') }}"
+                    width="200" height="100">
+            </a>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-item" href="#">
+                            About Us
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="/meet-the-doctors">
+                                Meet the Doctors
                             </a>
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="#">
-                                    Consultation
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Teeth Whitening
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Teeth Braces
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Root Canal
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Tooth Extraction
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Dental Filling
-                                </a>
-                                <a class="navbar-item" href="#">
-                                    Oral Propylaxis
-                                </a>
-                            </div>
-                        </div>
-                        <a class="navbar-item" href="#">
-                            Before & After
-                        </a>
-                        <a class="navbar-item" href="#">
-                            Contact
-                        </a>
-                        <div class="navbar-item">
-                            <a class="button is-rounded is-link" href="#">
-                                Book Online
+                            <a class="navbar-item" href="/locations">
+                                Locations
+                            </a>
+                            <a class="navbar-item" href="/faqs">
+                                FAQs
+                            </a>
+                            <a class="navbar-item" href="/contact-us">
+                                Contact Us
                             </a>
                         </div>
                     </div>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-item" href="#">
+                            Services
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="#">
+                                Consultation
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Teeth Whitening
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Teeth Braces
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Root Canal
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Tooth Extraction
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Dental Filling
+                            </a>
+                            <a class="navbar-item" href="#">
+                                Oral Propylaxis
+                            </a>
+                        </div>
+                    </div>
+                    <a class="navbar-item" href="#">
+                        Before & After
+                    </a>
+                    <a class="navbar-item" href="#">
+                        Contact
+                    </a>
+                    <div class="navbar-item">
+                        <a class="button is-rounded is-link" href="#">
+                            Book Online
+                        </a>
                     </div>
                 </div>
-            </nav>
-        </div>
+                </div>
+            </div>
+        </nav>
         <div id="app">
-            <div class="container is-fluid to-fade-in">
+            <div class="container to-fade-in">
                 {% block content %}
                 {% endblock %}
             </div>
