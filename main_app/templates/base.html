@@ -16,70 +16,77 @@
             </a>
             <div class="navbar-menu">
                 <div class="navbar-end">
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-item" href="#">
-                            About Us
-                        </a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="/meet-the-doctors">
-                                Meet the Doctors
+                    <div class="navbar-item">
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-item" href="#">
+                                About Us
                             </a>
-                            <a class="navbar-item" href="/locations">
-                                Locations
-                            </a>
-                            <a class="navbar-item" href="/faqs">
-                                FAQs
-                            </a>
-                            <a class="navbar-item" href="/contact-us">
-                                Contact Us
-                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="/meet-the-doctors">
+                                    Meet the Doctors
+                                </a>
+                                <a class="navbar-item" href="/locations">
+                                    Locations
+                                </a>
+                                <a class="navbar-item" href="/faqs">
+                                    FAQs
+                                </a>
+                                <a class="navbar-item" href="/contact-us">
+                                    Contact Us
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-item" href="#">
-                            Services
-                        </a>
-                        <div class="navbar-dropdown">
+                    <div class="navbar-item">
+                        <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-item" href="#">
-                                Consultation
+                                Services
                             </a>
-                            <a class="navbar-item" href="#">
-                                Teeth Whitening
-                            </a>
-                            <a class="navbar-item" href="#">
-                                Teeth Braces
-                            </a>
-                            <a class="navbar-item" href="#">
-                                Root Canal
-                            </a>
-                            <a class="navbar-item" href="#">
-                                Tooth Extraction
-                            </a>
-                            <a class="navbar-item" href="#">
-                                Dental Filling
-                            </a>
-                            <a class="navbar-item" href="#">
-                                Oral Propylaxis
-                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="#">
+                                    Consultation
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Teeth Whitening
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Teeth Braces
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Root Canal
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Tooth Extraction
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Dental Filling
+                                </a>
+                                <a class="navbar-item" href="#">
+                                    Oral Propylaxis
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <a class="navbar-item" href="#">
-                        Before & After
-                    </a>
-                    <a class="navbar-item" href="#">
-                        Contact
-                    </a>
+                    <div class="navbar-item">
+                        <a class="navbar-item" href="#">
+                            Before & After
+                        </a>
+                    </div>
+                    <div class="navbar-item">
+                        <a class="navbar-item" href="#">
+                            Contact
+                        </a>
+                    </div>
                     <div class="navbar-item">
                         <a class="button is-rounded is-link" href="#">
                             Book Online
                         </a>
                     </div>
                 </div>
-                </div>
             </div>
         </nav>
         <div id="app">
-            <div class="container to-fade-in">
+            <div class="to-fade-in">
                 {% block content %}
                 {% endblock %}
             </div>
