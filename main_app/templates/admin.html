@@ -1,29 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to the Admin page!</h1>
-    <table>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Contact Number</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Service</th>
-        </tr>
-        {% for appt in appts %}
-            <tr>
-                <td>{{ appt.first_name }}</td>
-                <td>{{ appt.last_name }}</td>
-                <td>{{ appt.contact_number }}</td>
-                <td>{{ appt.get_appt_date() }}</td>
-                <td>{{ appt.get_appt_time() }}</td>
-                <td>{{ appt.get_service() }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="columns">
+        <div class="column is-half is-offset-one-quarter"> 
+            <h2 class="has-text-centered is-size-4">Booked Schedules</h2>
+            <br>
+            <table class="table is-bordered">
+                <tbody>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Contact Number</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Service</th>
+                    </tr>
+                    {% for appt in appts %}
+                        <tr>
+                            <td>{{ appt.first_name }}</td>
+                            <td>{{ appt.last_name }}</td>
+                            <td>{{ appt.contact_number }}</td>
+                            <td>{{ appt.get_appt_date() }}</td>
+                            <td>{{ appt.get_appt_time() }}</td>
+                            <td>{{ appt.get_service() }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br>
-    <button id="viewAppointments">View Appointments</button>
 {% endblock %}
 
 {% block script %}

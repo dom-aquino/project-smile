@@ -26,6 +26,11 @@ def index():
     return render_template("index.html", title="Welcome", form=form)
 
 
+@app.route("/book-online", methods=['GET'])
+def book_online():
+    return render_template("book_online.html", title="Book Online")
+
+
 @app.route("/meet-the-doctors", methods=['GET'])
 def meet_the_doctors():
     return render_template("meet_the_doctors.html", title="Meet the Doctors")
