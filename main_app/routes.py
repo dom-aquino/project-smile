@@ -28,7 +28,7 @@ def index():
 
 @app.route("/book-online", methods=['GET'])
 def book_online():
-    return render_template("book_online.html", title="Book Online")
+    return render_template("book_online.html", title="Schedule an Appointment")
 
 
 @app.route("/meet-the-doctors", methods=['GET'])
