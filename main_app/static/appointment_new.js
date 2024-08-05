@@ -10,7 +10,8 @@ createApp({
 
     data() {
         return {
-            selectedDate: null
+            selectedDate: null,
+            isStepOne: true
         }
     },
 
