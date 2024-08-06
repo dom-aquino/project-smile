@@ -11,7 +11,7 @@ createApp({
     data() {
         return {
             selectedDate: null,
-            isStepOne: true
+            isStepOne: true,
         }
     },
 
@@ -102,6 +102,10 @@ createApp({
                     }
                 }
             }
+        },
+
+        toggleStep() {
+            this.isStepOne = !this.isStepOne;
         },
     }
 }).mount('#app')

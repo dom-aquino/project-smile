@@ -43,6 +43,27 @@
                 </div>
             </div>
         </div>
+        <div v-if="!isStepOne">
+            <div class="columns is-centered">
+                <div class="column">
+                    Hello
+                </div>
+            </div>
+        </div>
+        <div class="columns is-4 is-centered">
+            <div class="column is-one-third">
+            </div>
+            <div class="column is-one-third">
+                <div class="columns">
+                    <div class="column">
+                        <button class="button is-fullwidth" @click="toggleStep">Toggle</button>
+                    </div>
+                    <div class="column">
+                        <button class="button is-fullwidth" @click="toggleStep">Toggle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
