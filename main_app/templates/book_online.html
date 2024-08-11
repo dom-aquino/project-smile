@@ -45,21 +45,29 @@
         </div>
         <div v-if="!isStepOne">
             <div class="columns is-centered">
-                <div class="column">
-                    Hello
+                <div class="column is-one-third">
+                    <button class="block button is-fullwidth" @click="toggleStep">Consultation</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Whitening</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Braces</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Oral Prophylaxis</button>
+                </div>
+                <div class="column is-one-third">
+                    <button class="block button is-fullwidth" @click="toggleStep">Root Canal</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Tooth Extraction</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Dental Filling</button>
                 </div>
             </div>
         </div>
-        <div class="columns is-4 is-centered">
+        <div class="columns is-4 is-centered mt-5">
             <div class="column is-one-third">
             </div>
             <div class="column is-one-third">
                 <div class="columns">
                     <div class="column">
-                        <button class="button is-fullwidth" @click="toggleStep">Toggle</button>
+                        &nbsp
                     </div>
                     <div class="column">
-                        <button class="button is-fullwidth" @click="toggleStep">Toggle</button>
+                        <button class="button is-fullwidth" @click="toggleStep">Next</button>
                     </div>
                 </div>
             </div>
