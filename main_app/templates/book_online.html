@@ -3,9 +3,9 @@
 {% block content %}
     <div class="container">
         <h2 class="has-text-centered is-size-5 mb-6">
-            Hi, Welcome to Project Smile
+            Hi {{ firstName }}, Welcome to Project Smile
         </h2>
-        <div v-if="isStepOne">
+        <div v-if="stepNumber==1">
             <div class="columns is-centered">
                 <div class="column is-one-third">
                     <div class="field is-vertical">
@@ -13,7 +13,8 @@
                             <label class="label">Patient's Name (Required)</label>
                         </div>
                     </div>
-                    <input class="input" type="text" placeholder="First Name"/>
+                    <input class="input" type="text" v-model="firstName" placeholder="First Name"/>
+                    firstName: {{ firstName }}
                 </div>
                 <div class="column is-one-third">
                     <div class="field is-vertical">
@@ -43,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="!isStepOne">
+        <div v-if="stepNumber==2">
             <div class="columns is-centered">
                 <div class="column is-one-third">
                     <button class="block button is-fullwidth" @click="toggleStep">Consultation</button>
@@ -62,12 +63,20 @@
             <div class="column is-one-third">
             </div>
             <div class="column is-one-third">
-                <div class="columns">
+                <div v-if="stepNumber==1" class="columns">
                     <div class="column">
                         &nbsp
                     </div>
                     <div class="column">
-                        <button class="button is-fullwidth" @click="toggleStep">Next</button>
+                        <button class="button is-fullwidth" @click="moveForward">Next</button>
+                    </div>
+                </div>
+                <div v-else class="columns">
+                    <div class="column">
+                        <button class="button is-fullwidth" @click="moveBack">Previous</button>
+                    </div>
+                    <div class="column">
+                        <button class="button is-fullwidth" @click="moveForward">Next</button>
                     </div>
                 </div>
             </div>

@@ -4,14 +4,15 @@ createApp({
     delimeters: ['[[', ']]'],
 
     mounted() {
-        this.updateDateSelection();
-        this.updateTimeSelection();
+        //this.updateDateSelection();
+        //this.updateTimeSelection();
     },
 
     data() {
         return {
             selectedDate: null,
-            isStepOne: true,
+            stepNumber: 1,
+            firstName: "ABC",
         }
     },
 
@@ -104,8 +105,18 @@ createApp({
             }
         },
 
-        toggleStep() {
-            this.isStepOne = !this.isStepOne;
+        moveBack() {
+            if (this.stepNumber > 0)
+            {
+                this.stepNumber= --this.stepNumber;
+            }
+        },
+
+        moveForward() {
+            if (this.stepNumber < 3)
+            {
+                this.stepNumber= ++this.stepNumber;
+            }
         },
     }
 }).mount('#app')
