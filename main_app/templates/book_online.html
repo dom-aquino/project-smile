@@ -3,12 +3,83 @@
 {% block content %}
     <div class="container">
         <h2 class="has-text-centered is-size-5 mb-6">
-            Hi {{ firstName }}, Welcome to Project Smile
+            Welcome to Project Smile
         </h2>
+        <div id="step1">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <div class="field is-vertical">
+                        <div class="field-label has-text-left is-small">
+                            <label class="label">Patient's Name (Required)</label>
+                        </div>
+                    </div>
+                    <input class="input" type="text" id="firstName" placeholder="First Name"/>
+                </div>
+                <div class="column is-one-third">
+                    <div class="field is-vertical">
+                        <div class="field-label has-text-left is-small">
+                            <label class="label">&nbsp</label>
+                        </div>
+                    </div>
+                    <input class="input" type="text" placeholder="Last Name"/>
+                </div>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <div class="field is-vertical">
+                        <div class="field-label has-text-left is-small">
+                            <label class="label">Contact Number</label>
+                        </div>
+                    </div>
+                    <input class="input" type="text" placeholder="+63"/>
+                </div>
+                <div class="column is-one-third">
+                    <div class="field is-vertical">
+                        <div class="field-label has-text-left is-small">
+                            <label class="label">Email Address</label>
+                        </div>
+                    </div>
+                    <input class="input" type="text" placeholder="Email Address"/>
+                </div>
+            </div>
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <button class="block button is-fullwidth" @click="toggleStep">Consultation</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Whitening</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Braces</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Oral Prophylaxis</button>
+                </div>
+                <div class="column is-one-third">
+                    <button class="block button is-fullwidth" @click="toggleStep">Root Canal</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Tooth Extraction</button>
+                    <button class="block button is-fullwidth" @click="toggleStep">Dental Filling</button>
+                </div>
+            </div>
+        </div>
+        <div id="step2" style="display: none;">
+            This is step number 2
+        </div>
+        <div class="columns is-4 is-centered mt-5">
+            <div class="column is-one-third">
+            </div>
+            <div class="column is-one-third">
+                <div class="columns">
+                    <div class="column">
+                        <button class="button is-fullwidth" onclick="previousStep()">Previous</button>
+                    </div>
+                    <div class="column">
+                        <button class="button is-fullwidth" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="displayData">
+            <p>First Name: <span id="displayFirstName"></span></p>
+        </div>
     </div>
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='appointment_new.js') }}"></script>
+    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
 {% endblock %}
 

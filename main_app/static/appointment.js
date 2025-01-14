@@ -1,91 +1,40 @@
-function addMonths(date, count) {
-  if (date && count) {
-    var m, d = (date = new Date(+date)).getDate();
-    date.setMonth(date.getMonth() + count, 1);
-    m = date.getMonth();
-    date.setDate(d);
-    if (date.getMonth() !== m) date.setDate(0);
-  }
-  return date;
-}
+var formData = {
+    firstName: '',
+    lastName: '',
+    contactNumber: '',
+    emailAddress: '',
+    service: '',
+};
 
-function getMinDate(dateNow) {
-    let month = String(dateNow.getMonth() + 1).padStart(2, '0');
-    let day = String(dateNow.getDate()).padStart(2, '0');
-    let year = dateNow.getFullYear();
-    let minDate = year + '-' + month + '-' + day;
-    return minDate;
-}
-
-function getMaxDate(minDate) {
-    let dateAfterOneMonth = addMonths(new Date(minDate), 3);
-    let month = String(dateAfterOneMonth.getMonth() + 1).padStart(2, '0');
-    let day = String(dateAfterOneMonth.getDate()).padStart(2, '0');
-    let year = dateAfterOneMonth.getFullYear();
-    let maxDate = year + '-' + month + '-' + day;
-    return maxDate;
-}
-
-function updateDateSelection() {
-    let dateNow = new Date();
-    let minDate = getMinDate(dateNow);
-    let maxDate = getMaxDate(minDate);
-    const dateControl = document.querySelector('input[name="appt_date"]');
-    dateControl.value = dateControl.min = minDate;
-    dateControl.max = maxDate;
-}
-
-function updateTimeSelection() {
-    let selectedDate = document.querySelector('input[name="appt_date"]');
-    getBookedTimes(selectedDate);
-}
-
-function refreshTimeSlots() {
-    const selectTimeElement = document.getElementById("appt_time");
-    for (var i = 0; i < selectTimeElement.options.length; ++i) {
-        selectTimeElement.options[i].disabled = false;
-    }
-}
-
-function disableBookedTimeSlots(bookedTimeSlots) {
-    const selectTimeElement = document.getElementById("appt_time");
-    let isMinValueSet = false;
-    for (var i = 0; i < selectTimeElement.options.length; ++i) {
-        var option = selectTimeElement.options[i];
-        if (bookedTimeSlots.includes(option.value*1)) {
-            option.disabled = true;
-        } else {
-            if (isMinValueSet == false) {
-                selectTimeElement.value = option.value*1;
-                isMinValueSet = true;
-            }
-        }
-    }
-}
-
-function getBookedTimes(date) {
-    fetch("api/get-booked-times?current_date=" + date.value, {
-        method: "GET",
-    }).then((response) => {
-        if (!response.ok) {
-            throw new Error("Response is not okay!");
-        } else {
-            return response.json();
-        }
-    }).then(data => {
-        refreshTimeSlots();
-        if (data.length != 0) {
-            disableBookedTimeSlots(data);
-        }
+function bindInput(id, key) {
+    var element = document.getElementById(id);
+    element.addEventListener('input', function() {
+        formData[key] = element.value;
+        updateDisplay();
     });
 }
 
-function onDateChange(date) {
-    getBookedTimes(date);
+function updateDisplay() {
+    document.getElementById('displayFirstName').innerText = formData.firstName;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    updateDateSelection();
-    updateTimeSelection();
-});
+bindInput('firstName', 'firstName');
 
+var stepNumber = 1;
+
+function showStep(stepNumber) {
+    document.getElementById("step1").style.display = (stepNumber === 1) ? "block" : "none";
+    document.getElementById("step2").style.display = (stepNumber === 2) ? "block" : "none";
+}
+
+function nextStep() {
+    stepNumber++;
+    showStep(stepNumber);
+}
+
+function previousStep() {
+    stepNumber--;
+    showStep(stepNumber);
+}
+
+showStep(stepNumber);
