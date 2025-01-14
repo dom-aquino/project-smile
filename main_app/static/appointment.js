@@ -2,7 +2,6 @@ var formData = {
     firstName: '',
     lastName: '',
     contactNumber: '',
-    emailAddress: '',
     service: '',
 };
 
@@ -16,9 +15,20 @@ function bindInput(id, key) {
 
 function updateDisplay() {
     document.getElementById('displayFirstName').innerText = formData.firstName;
+    document.getElementById('displayLastName').innerText = formData.lastName;
+    document.getElementById('displayContactNumber').innerText = formData.contactNumber;
+    document.getElementById('displayService').innerText = formData.service;
 }
 
 bindInput('firstName', 'firstName');
+bindInput('lastName', 'lastName');
+bindInput('contactNumber', 'contactNumber');
+bindInput('service', 'service');
+
+function chooseService(service) {
+    formData.service = service;
+    updateDisplay();
+}
 
 var stepNumber = 1;
 

@@ -21,7 +21,7 @@
                             <label class="label">&nbsp</label>
                         </div>
                     </div>
-                    <input class="input" type="text" placeholder="Last Name"/>
+                    <input class="input" type="text" id="lastName" placeholder="Last Name"/>
                 </div>
             </div>
             <div class="columns is-centered">
@@ -31,28 +31,22 @@
                             <label class="label">Contact Number</label>
                         </div>
                     </div>
-                    <input class="input" type="text" placeholder="+63"/>
+                    <input class="input" type="text" id="contactNumber" placeholder="+63"/>
                 </div>
                 <div class="column is-one-third">
-                    <div class="field is-vertical">
-                        <div class="field-label has-text-left is-small">
-                            <label class="label">Email Address</label>
-                        </div>
-                    </div>
-                    <input class="input" type="text" placeholder="Email Address"/>
                 </div>
             </div>
             <div class="columns is-centered">
                 <div class="column is-one-third">
-                    <button class="block button is-fullwidth" @click="toggleStep">Consultation</button>
-                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Whitening</button>
-                    <button class="block button is-fullwidth" @click="toggleStep">Teeth Braces</button>
-                    <button class="block button is-fullwidth" @click="toggleStep">Oral Prophylaxis</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Consultation')">Consultation</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Teeth Whitening')">Teeth Whitening</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Teeth Braces')">Teeth Braces</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Oral Prophylaxis')">Oral Prophylaxis</button>
                 </div>
                 <div class="column is-one-third">
-                    <button class="block button is-fullwidth" @click="toggleStep">Root Canal</button>
-                    <button class="block button is-fullwidth" @click="toggleStep">Tooth Extraction</button>
-                    <button class="block button is-fullwidth" @click="toggleStep">Dental Filling</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Root Canal')">Root Canal</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Tooth Extraction')">Tooth Extraction</button>
+                    <button class="block button is-fullwidth" onclick="chooseService('Dental Filling')">Dental Filling</button>
                 </div>
             </div>
         </div>
@@ -75,6 +69,9 @@
         </div>
         <div id="displayData">
             <p>First Name: <span id="displayFirstName"></span></p>
+            <p>Last Name: <span id="displayLastName"></span></p>
+            <p>Contact Number: <span id="displayContactNumber"></span></p>
+            <p>Service: <span id="displayService"></span></p>
         </div>
     </div>
 {% endblock %}
