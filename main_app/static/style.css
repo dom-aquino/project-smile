@@ -39,3 +39,8 @@ hr {
     margin: 0px;
 }
 
+.selected-service {
+    background-color: #4258FF;
+    color: white;
+}
+

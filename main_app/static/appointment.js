@@ -5,6 +5,8 @@ var formData = {
     service: '',
 };
 
+// To be deleted
+// This just shows how to bind an input to a variable
 function bindInput(id, key) {
     var element = document.getElementById(id);
     element.addEventListener('input', function() {
@@ -20,14 +22,22 @@ function updateDisplay() {
     document.getElementById('displayService').innerText = formData.service;
 }
 
+// To be deleted
 bindInput('firstName', 'firstName');
 bindInput('lastName', 'lastName');
 bindInput('contactNumber', 'contactNumber');
 bindInput('service', 'service');
 
-function chooseService(service) {
+function chooseService(service, button) {
     formData.service = service;
     updateDisplay();
+
+    var buttons = document.querySelectorAll('.service-button');
+    buttons.forEach(function(btn) {
+        btn.classList.remove('selected-service');
+    });
+
+    button.classList.add('selected-service');
 }
 
 var stepNumber = 1;
