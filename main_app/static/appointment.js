@@ -43,16 +43,22 @@ function chooseService(service, button) {
 var stepNumber = 1;
 
 function showStep(stepNumber) {
-    document.getElementById("step1").style.display = (stepNumber === 1) ? "block" : "none";
-    document.getElementById("step2").style.display = (stepNumber === 2) ? "block" : "none";
+    document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
+    document.getElementById("step2").style.display = (stepNumber == 2) ? "block" : "none";
 }
 
 function nextStep() {
+    if (stepNumber === 2) {
+        return;
+    }
     stepNumber++;
     showStep(stepNumber);
 }
 
 function previousStep() {
+    if (stepNumber === 1) {
+        return;
+    }
     stepNumber--;
     showStep(stepNumber);
 }
