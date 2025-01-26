@@ -36,6 +36,8 @@
                 <div class="column is-one-third">
                 </div>
             </div>
+        </div>
+        <div id="step2" style="display: none;">
             <div class="columns is-centered">
                 <div class="column is-one-third">
                     <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('Consultation', this)">Consultation</button>
@@ -50,13 +52,8 @@
                 </div>
             </div>
         </div>
-        <div id="step2" style="display: none;">
-            This is step number 2
-        </div>
-        <div class="columns is-4 is-centered mt-5">
-            <div class="column is-one-third">
-            </div>
-            <div class="column is-one-third">
+        <div class="columns mt-5">
+            <div class="column is-one-third is-offset-6">
                 <div class="columns">
                     <div class="column">
                         <button class="button is-fullwidth" onclick="previousStep()">Previous</button>
@@ -67,11 +64,14 @@
                 </div>
             </div>
         </div>
-        <div id="displayData">
-            <p>First Name: <span id="displayFirstName"></span></p>
-            <p>Last Name: <span id="displayLastName"></span></p>
-            <p>Contact Number: <span id="displayContactNumber"></span></p>
-            <p>Service: <span id="displayService"></span></p>
+        <div class="columns">
+            <div class="column is-one-third is-offset-4" id="displayData">
+                <p>First Name: <span id="displayFirstName"></span></p>
+                <p>Last Name: <span id="displayLastName"></span></p>
+                <p>Contact Number: <span id="displayContactNumber"></span></p>
+                <p>Service: <span id="displayService"></span></p>
+                <p>Schedule: <span id="displaySchedule"></span></p>
+            </div>
         </div>
     </div>
 {% endblock %}
