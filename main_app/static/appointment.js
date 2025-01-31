@@ -51,6 +51,9 @@ function nextStep() {
     if (stepNumber === 2) {
         return;
     }
+    if (stepNumber === 1 && !verifyName()) {
+        return;
+    }
     stepNumber++;
     showStep(stepNumber);
 }
@@ -64,3 +67,33 @@ function previousStep() {
 }
 
 showStep(stepNumber);
+
+function verifyName() {
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    firstName = firstName.replace(/\s/g, '');
+    lastName = lastName.replace(/\s/g, '');
+
+    if (firstName.length < 2) {
+        addHighlight('firstName');
+        return false;
+    } else if (lastName.length < 2) {
+        addHighlight('lastName');
+        return false;
+    }
+
+    removeHighlight('firstName');
+    removeHighlight('lastName');
+
+    return true;
+}
+
+function addHighlight(inputId) {
+    var input = document.getElementById(inputId);
+    input.classList.add('invalid-input');
+}
+
+function removeHighlight(inputId) {
+    var input = document.getElementById(inputId);
+    input.classList.remove('invalid-input');
+}

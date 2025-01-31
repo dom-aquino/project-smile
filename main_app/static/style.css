@@ -36,6 +36,10 @@
     color: white;
 }
 
+.invalid-input {
+    border: 1px solid red;
+}
+
 hr {
     border: none;
     height: 1px;
