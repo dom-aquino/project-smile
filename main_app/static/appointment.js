@@ -3,6 +3,7 @@ var formData = {
     lastName: '',
     contactNumber: '',
     service: '',
+    schedule: '',
 };
 
 // To be deleted
@@ -20,6 +21,7 @@ function updateDisplay() {
     document.getElementById('displayLastName').innerText = formData.lastName;
     document.getElementById('displayContactNumber').innerText = formData.contactNumber;
     document.getElementById('displayService').innerText = formData.service;
+    document.getElementById('displaySchedule').innerText = formData.schedule;
 }
 
 // To be deleted
@@ -27,6 +29,7 @@ bindInput('firstName', 'firstName');
 bindInput('lastName', 'lastName');
 bindInput('contactNumber', 'contactNumber');
 bindInput('service', 'service');
+bindInput('schedule', 'schedule');
 
 function chooseService(service, button) {
     formData.service = service;
@@ -45,13 +48,17 @@ var stepNumber = 1;
 function showStep(stepNumber) {
     document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
     document.getElementById("step2").style.display = (stepNumber == 2) ? "block" : "none";
+    document.getElementById("step3").style.display = (stepNumber == 3) ? "block" : "none";
 }
 
 function nextStep() {
-    if (stepNumber === 2) {
+    if (stepNumber === 3) {
         return;
     }
     if (stepNumber === 1 && !verifyName()) {
+        return;
+    }
+    if (stepNumber === 2 && !verifyService()) {
         return;
     }
     stepNumber++;
@@ -88,6 +95,10 @@ function verifyName() {
     removeHighlight('lastName');
     removeFlagPatientName();
 
+    return true;
+}
+
+function verifyService() {
     return true;
 }
 
