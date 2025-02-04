@@ -40,6 +40,10 @@
     border: 1px solid red;
 }
 
+.highlight-label {
+    color: red;
+}
+
 hr {
     border: none;
     height: 1px;

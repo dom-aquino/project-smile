@@ -76,14 +76,17 @@ function verifyName() {
 
     if (firstName.length < 2) {
         addHighlight('firstName');
+        addFlagPatientName();
         return false;
     } else if (lastName.length < 2) {
         addHighlight('lastName');
+        addFlagPatientName();
         return false;
     }
 
     removeHighlight('firstName');
     removeHighlight('lastName');
+    removeFlagPatientName();
 
     return true;
 }
@@ -96,4 +99,16 @@ function addHighlight(inputId) {
 function removeHighlight(inputId) {
     var input = document.getElementById(inputId);
     input.classList.remove('invalid-input');
+}
+
+function addFlagPatientName() {
+    var patientName = document.getElementById('patient-name');
+    patientName.innerText = 'Patient\'s Name (Please enter at least 2 characters)';
+    patientName.style.color = 'red';
+}
+
+function removeFlagPatientName() {
+    var patientName = document.getElementById('patient-name');
+    patientName.innerText = 'Patient\'s Name';
+    patientName.style.color = 'black';
 }
