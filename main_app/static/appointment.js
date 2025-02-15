@@ -3,9 +3,26 @@ var formData = {
     lastName: '',
     contactNumber: '',
     service: '',
-    schedule: '',
+    apptDate: '',
 };
 
+var availableTimes = [];
+
+document.getElementById('apptDate').addEventListener('change', function(event) {
+    const selectedDate = event.target.value;
+
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    var today = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+    document.getElementById('apptDate').value = today;
+    formData.apptDate = today;
+    updateDisplay();
+});
 // To be deleted
 // This just shows how to bind an input to a variable
 function bindInput(id, key) {
@@ -21,7 +38,7 @@ function updateDisplay() {
     document.getElementById('displayLastName').innerText = formData.lastName;
     document.getElementById('displayContactNumber').innerText = formData.contactNumber;
     document.getElementById('displayService').innerText = formData.service;
-    document.getElementById('displaySchedule').innerText = formData.schedule;
+    document.getElementById('displaySchedule').innerText = formData.apptDate;
 }
 
 // To be deleted
@@ -29,7 +46,8 @@ bindInput('firstName', 'firstName');
 bindInput('lastName', 'lastName');
 bindInput('contactNumber', 'contactNumber');
 bindInput('service', 'service');
-bindInput('schedule', 'schedule');
+bindInput('apptDate', 'apptDate');
+
 
 function chooseService(service, button) {
     formData.service = service;

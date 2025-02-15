@@ -61,7 +61,7 @@
                             <label class="label">Select Appointment Date</label>
                         </div>
                     </div>
-                    <input class="input" type="date" id="schedule" required/>
+                    <input class="input" type="date" id="apptDate" required/>
                 </div>
             </div>
             <div class="columns is-centered">
@@ -96,5 +96,5 @@
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
+    <script src="{{ url_for("static", filename='appointment.js') }}"></script>
 {% endblock %}
