@@ -9,8 +9,7 @@ var formData = {
 var availableTimes = [];
 
 document.getElementById('apptDate').addEventListener('change', function(event) {
-    const selectedDate = event.target.value;
-
+    getAvailableTimes();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -22,7 +21,39 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('apptDate').value = today;
     formData.apptDate = today;
     updateDisplay();
+
+    getAvailableTimes();
 });
+
+async function getAvailableTimes() {
+    const date = document.getElementById('apptDate').value;
+    const url = '/api/get-available-time?selected_date=' + date;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('HTTP error, status = ' + response.status);
+        }
+        const data = await response.json();
+        const availableTime = data['available-time'];
+        availableTimes = Object.values(availableTime);
+        createTimeSlotsButtons(availableTime);
+        console.log("Available times: ", data);
+        console.log("Available times: ", Object.keys(availableTime).length);
+    } catch (error) {
+        console.error("Error fetching available times: ", error);
+    }
+}
+
+function createTimeSlotsButtons(availableTime) {
+    const container = document.getElementById('time-slots');
+    for (let i = 0; i < Object.keys(availableTime).length; ++i) {
+        console.log("Creating button...");
+        const button = document.createElement('button');
+        button.innerText = availableTimes[i];
+        container.appendChild(button);
+    }
+}
+
 // To be deleted
 // This just shows how to bind an input to a variable
 function bindInput(id, key) {
@@ -61,7 +92,7 @@ function chooseService(service, button) {
     button.classList.add('selected-service');
 }
 
-var stepNumber = 1;
+var stepNumber = 3;
 
 function showStep(stepNumber) {
     document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
