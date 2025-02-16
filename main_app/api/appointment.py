@@ -32,16 +32,14 @@ def create_appointment():
 
 
 @bp.route("/get-available-time", methods=['GET'])
-def get_booked_times():
+def get_available_time():
     date = request.args.get('selected_date')
     schedules = Schedule.query.filter_by(appt_date=date).all()
     appt_times = [schedule.appt_time for schedule in schedules]
-    output = []
-    for time_slot in TIME_SLOTS_DICT:
-        if time_slot not in appt_times:
-            output.append(TIME_SLOTS_DICT[time_slot])
+    output = TIME_SLOTS_DICT.copy()
+    output = {key:value for key, value in output.items() if key not in appt_times}
 
-    return jsonify({'available-times': output})
+    return jsonify({'available-time': output})
 
 @bp.route("/test-api", methods=['GET'])
 def test_api():
