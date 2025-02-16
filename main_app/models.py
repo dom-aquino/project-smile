@@ -27,3 +27,6 @@ class Schedule(db.Model):
     appt_id = db.Column(db.Integer, db.ForeignKey('appointment.id'),
                         nullable=False)
 
+    def get_appt_time(self):
+        return TIME_SLOTS_DICT[self.appt_time]
+
