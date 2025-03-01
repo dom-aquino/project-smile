@@ -35,10 +35,8 @@ async function getAvailableTimes() {
         }
         const data = await response.json();
         const availableTime = data['available-time'];
-        availableTimes = Object.values(availableTime);
+        clearTimeSlotsButtons();
         createTimeSlotsButtons(availableTime);
-        console.log("Available times: ", data);
-        console.log("Available times: ", Object.keys(availableTime).length);
     } catch (error) {
         console.error("Error fetching available times: ", error);
     }
@@ -46,12 +44,19 @@ async function getAvailableTimes() {
 
 function createTimeSlotsButtons(availableTime) {
     const container = document.getElementById('time-slots');
-    for (let i = 0; i < Object.keys(availableTime).length; ++i) {
-        console.log("Creating button...");
+    for (const key of Object.keys(availableTime)) {
         const button = document.createElement('button');
-        button.innerText = availableTimes[i];
+        button.textContent = availableTime[key];
+        button.className = "button mt-2 mx-2"; // Ugly hack to make it look decent
         container.appendChild(button);
     }
+}
+
+function clearTimeSlotsButtons() {
+    const buttons = document.querySelectorAll('#time-slots button');
+    buttons.forEach(function(button) {
+        button.remove();
+    });
 }
 
 // To be deleted
