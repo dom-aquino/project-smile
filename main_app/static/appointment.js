@@ -4,9 +4,8 @@ var formData = {
     contactNumber: '',
     service: '',
     apptDate: '',
+    apptTime: ''
 };
-
-var availableTimes = [];
 
 document.getElementById('apptDate').addEventListener('change', function(event) {
     getAvailableTimes();
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('apptDate').value = today;
     formData.apptDate = today;
     updateDisplay();
-
     getAvailableTimes();
 });
 
@@ -48,6 +46,12 @@ function createTimeSlotsButtons(availableTime) {
         const button = document.createElement('button');
         button.textContent = availableTime[key];
         button.className = "button mt-2 mx-2"; // Ugly hack to make it look decent
+        button.setAttribute("data-value", key);
+        button.addEventListener('click', function() {
+            console.log("Clicked on time slot: ", key);
+            formData.apptTime = key;
+            updateDisplay();
+        });
         container.appendChild(button);
     }
 }
@@ -75,6 +79,7 @@ function updateDisplay() {
     document.getElementById('displayContactNumber').innerText = formData.contactNumber;
     document.getElementById('displayService').innerText = formData.service;
     document.getElementById('displaySchedule').innerText = formData.apptDate;
+    document.getElementById('displayTime').innerText = formData.apptTime;
 }
 
 // To be deleted
@@ -83,7 +88,6 @@ bindInput('lastName', 'lastName');
 bindInput('contactNumber', 'contactNumber');
 bindInput('service', 'service');
 bindInput('apptDate', 'apptDate');
-
 
 function chooseService(service, button) {
     formData.service = service;
