@@ -1,3 +1,4 @@
+// Universal variables
 var formData = {
     firstName: '',
     lastName: '',
@@ -6,23 +7,28 @@ var formData = {
     apptDate: '',
     apptTime: ''
 };
+var stepNumber = 3;
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    getCurrentDateAndUpdateForm();
+    getAvailableTimes();
+    updateDisplay(); // To be deleted
+    showStep(stepNumber);
+
+    // To be deleted
+    bindInput('firstName', 'firstName');
+    bindInput('lastName', 'lastName');
+    bindInput('contactNumber', 'contactNumber');
+    bindInput('service', 'service');
+    bindInput('apptDate', 'apptDate');
+});
 
 document.getElementById('apptDate').addEventListener('change', function(event) {
     getAvailableTimes();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    var date = new Date();
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    var today = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
-    document.getElementById('apptDate').value = today;
-    formData.apptDate = today;
-    updateDisplay();
-    getAvailableTimes();
-});
-
+// Functions
 async function getAvailableTimes() {
     const date = document.getElementById('apptDate').value;
     const url = '/api/get-available-time?selected_date=' + date;
@@ -63,6 +69,15 @@ function clearTimeSlotsButtons() {
     });
 }
 
+function getCurrentDateAndUpdateForm() {
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    var today = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+    document.getElementById('apptDate').value = formData.apptDate = today;
+}
+
 // To be deleted
 // This just shows how to bind an input to a variable
 function bindInput(id, key) {
@@ -82,13 +97,6 @@ function updateDisplay() {
     document.getElementById('displayTime').innerText = formData.apptTime;
 }
 
-// To be deleted
-bindInput('firstName', 'firstName');
-bindInput('lastName', 'lastName');
-bindInput('contactNumber', 'contactNumber');
-bindInput('service', 'service');
-bindInput('apptDate', 'apptDate');
-
 function chooseService(service, button) {
     formData.service = service;
     updateDisplay();
@@ -100,8 +108,6 @@ function chooseService(service, button) {
 
     button.classList.add('selected-service');
 }
-
-var stepNumber = 3;
 
 function showStep(stepNumber) {
     document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
@@ -130,8 +136,6 @@ function previousStep() {
     stepNumber--;
     showStep(stepNumber);
 }
-
-showStep(stepNumber);
 
 function verifyName() {
     var firstName = document.getElementById('firstName').value;
@@ -181,3 +185,4 @@ function removeFlagPatientName() {
     patientName.innerText = 'Patient\'s Name';
     patientName.style.color = 'black';
 }
+
