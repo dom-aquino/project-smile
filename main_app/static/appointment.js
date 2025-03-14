@@ -7,11 +7,12 @@ var formData = {
     apptDate: '',
     apptTime: ''
 };
+
 var stepNumber = 3;
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    getCurrentDateAndUpdateForm();
+    getCurrentDate();
     getAvailableTimes();
     updateDisplay(); // To be deleted
     showStep(stepNumber);
@@ -38,9 +39,8 @@ async function getAvailableTimes() {
             throw new Error('HTTP error, status = ' + response.status);
         }
         const data = await response.json();
-        const availableTime = data['available-time'];
         clearTimeSlotsButtons();
-        createTimeSlotsButtons(availableTime);
+        createTimeSlotsButtons(data['available-time']);
     } catch (error) {
         console.error("Error fetching available times: ", error);
     }
@@ -54,9 +54,7 @@ function createTimeSlotsButtons(availableTime) {
         button.className = "button mt-2 mx-2"; // Ugly hack to make it look decent
         button.setAttribute("data-value", key);
         button.addEventListener('click', function() {
-            console.log("Clicked on time slot: ", key);
-            formData.apptTime = key;
-            updateDisplay();
+            chooseTimeSlot(key, button);
         });
         container.appendChild(button);
     }
@@ -69,7 +67,7 @@ function clearTimeSlotsButtons() {
     });
 }
 
-function getCurrentDateAndUpdateForm() {
+function getCurrentDate() {
     var date = new Date();
     var day = date.getDate();
     var month = date.getMonth() + 1;
@@ -95,6 +93,18 @@ function updateDisplay() {
     document.getElementById('displayService').innerText = formData.service;
     document.getElementById('displaySchedule').innerText = formData.apptDate;
     document.getElementById('displayTime').innerText = formData.apptTime;
+}
+
+function chooseTimeSlot(key, button) {
+    formData.apptTime = key;
+    updateDisplay();
+
+    var buttons = document.querySelectorAll('#time-slots button');
+    buttons.forEach(function(btn) {
+        btn.classList.remove('selected-service');
+    });
+
+    button.classList.add('selected-service');
 }
 
 function chooseService(service, button) {
