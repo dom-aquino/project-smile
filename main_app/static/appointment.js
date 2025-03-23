@@ -8,7 +8,7 @@ var formData = {
     apptTime: ''
 };
 
-var stepNumber = 3;
+var stepNumber = 1;
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     bindInput('contactNumber', 'contactNumber');
     bindInput('service', 'service');
     bindInput('apptDate', 'apptDate');
-});
 
-document.getElementById('apptDate').addEventListener('change', function(event) {
-    getAvailableTimes();
+    document.getElementById('apptDate').addEventListener('change', function(event) {
+        getAvailableTimes();
+    });
 });
 
 // Functions
