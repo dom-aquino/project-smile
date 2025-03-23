@@ -41,6 +41,7 @@ async function getAvailableTimes() {
         const data = await response.json();
         clearTimeSlotsButtons();
         createTimeSlotsButtons(data['available-time']);
+        updateDisplay();
     } catch (error) {
         console.error("Error fetching available times: ", error);
     }
@@ -65,6 +66,7 @@ function clearTimeSlotsButtons() {
     buttons.forEach(function(button) {
         button.remove();
     });
+    formData.apptTime = '';
 }
 
 function getCurrentDate() {
