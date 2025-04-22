@@ -122,31 +122,17 @@ function chooseService(service, button) {
 }
 
 function showStep(stepNumber) {
-    if (stepNumber == 1) {
-        document.getElementById('step1').style.display = 'block';
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('step3').style.display = 'none';
-        document.getElementById('previous-step').style.display = 'none';
-        document.getElementById('next-step').style.display = 'block';
-        document.getElementById('confirm-booking').style.display = 'none';
-    } else if (stepNumber == 2) {
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'block';
-        document.getElementById('step3').style.display = 'none';
-        document.getElementById('previous-step').style.display = 'block';
-        document.getElementById('next-step').style.display = 'block';
-        document.getElementById('confirm-booking').style.display = 'none';
-    } else if (stepNumber == 3) {
-        document.getElementById('step1').style.display = 'none';
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('step3').style.display = 'block';
-        document.getElementById('previous-step').style.display = 'none';
-        document.getElementById('next-step').style.display = 'none';
-        document.getElementById('confirm-booking').style.display = 'block';
-    }
+    console.log("Show step: ", stepNumber);
+    document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
+    document.getElementById("step2").style.display = (stepNumber == 2) ? "block" : "none";
+    document.getElementById("step3").style.display = (stepNumber == 3) ? "block" : "none";
+    document.getElementById("step1_buttons").style.display = (stepNumber == 1) ? "block" : "none";
+    document.getElementById("step2_buttons").style.display = (stepNumber == 2) ? "block" : "none";
+    document.getElementById("step3_buttons").style.display = (stepNumber == 3) ? "block" : "none";
 }
 
 function nextStep() {
+    console.log("Next step");
     if (stepNumber === 3) {
         return;
     }

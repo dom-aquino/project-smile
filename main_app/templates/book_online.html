@@ -74,15 +74,16 @@
         <div class="columns mt-5">
             <div class="column is-one-third is-offset-6">
                 <div class="columns">
-                    <!--- Should be conditional rendering of buttons -->
-                    <div class="column">
-                        <button class="button is-fullwidth" id="previous-step" onclick="previousStep()">Previous</button>
+                    <div class="column is-offset-half" id="step1_buttons">
+                        <button class="button is-fullwidth" onclick="nextStep()">Next</button>
                     </div>
-                    <div class="column">
-                        <button class="button is-fullwidth" id="next-step" onclick="nextStep()">Next</button>
-                    </div>
-                    <div class="column">
-                        <button class="button is-fullwidth" id="confirm-booking" onclick="confirmBooking()">Confirm</button>
+                    <div id="step2_buttons" style="display:none;">
+                        <div class="column">
+                            <button class="button" onclick="previousStep()">Previous</button>
+                        </div>
+                        <div class="column">
+                            <button class="button" onclick="previousStep()">Previous</button>
+                        </div>
                     </div>
                 </div>
             </div>
