@@ -122,13 +122,64 @@ function chooseService(service, button) {
 }
 
 function showStep(stepNumber) {
-    console.log("Show step: ", stepNumber);
     document.getElementById("step1").style.display = (stepNumber == 1) ? "block" : "none";
     document.getElementById("step2").style.display = (stepNumber == 2) ? "block" : "none";
     document.getElementById("step3").style.display = (stepNumber == 3) ? "block" : "none";
-    document.getElementById("step1_buttons").style.display = (stepNumber == 1) ? "block" : "none";
-    document.getElementById("step2_buttons").style.display = (stepNumber == 2) ? "block" : "none";
-    document.getElementById("step3_buttons").style.display = (stepNumber == 3) ? "block" : "none";
+    showNavButtons(stepNumber);
+}
+
+function showNavButtons(stepNumber) {
+    clearNavButtons();
+    if (stepNumber === 1) {
+        const container = document.getElementById("nav-button-two");
+        const button = document.createElement("button");
+        button.className = "button is-fullwidth";
+        button.innerText = "Next";
+        button.addEventListener('click', function() {
+            nextStep();
+        });
+        container.appendChild(button);
+    } else if (stepNumber === 2) {
+        var container = document.getElementById("nav-button-one");
+        var button = document.createElement("button");
+        button.className = "button is-fullwidth";
+        button.innerText = "Previous";
+        button.addEventListener('click', function() {
+            previousStep();
+        });
+        container.appendChild(button);
+
+        container = document.getElementById("nav-button-two");
+        button = document.createElement("button");
+        button.className = "button is-fullwidth";
+        button.innerText = "Next";
+        button.addEventListener('click', function() {
+            nextStep();
+        });
+        container.appendChild(button);
+    } else if (stepNumber === 3) {
+        var container = document.getElementById("nav-button-one");
+        var button = document.createElement("button");
+        button.className = "button is-fullwidth";
+        button.innerText = "Previous";
+        button.addEventListener('click', function() {
+            previousStep();
+        });
+        container.appendChild(button);
+
+        container = document.getElementById("nav-button-two");
+        button = document.createElement("button");
+        button.className = "button is-fullwidth";
+        button.innerText = "Confirm";
+        container.appendChild(button);
+    }
+}
+
+function clearNavButtons() {
+    const buttons = document.querySelectorAll('#nav-button-one button, #nav-button-two button');
+    buttons.forEach(function(button) {
+        button.remove();
+    });
 }
 
 function nextStep() {
