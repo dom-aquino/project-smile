@@ -6,6 +6,7 @@ from main_app.helpers import TIME_SLOTS_DICT
 
 @bp.route("/create-appointment", methods=['POST'])
 def create_appointment():
+    """
     try:
         appointment = Appointment(first_name=request.json['first_name'],
                                   last_name=request.json['last_name'],
@@ -27,7 +28,7 @@ def create_appointment():
         error_message = str(e)
         db.session.flush()
         return jsonify({'error': error_message}), 500
-
+    """
     return jsonify({'success': 'Appointment has been created.'}), 201
 
 

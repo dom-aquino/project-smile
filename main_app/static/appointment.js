@@ -2,10 +2,10 @@
 var formData = {
     firstName: '',
     lastName: '',
-    contactNumber: '',
-    service: '',
-    apptDate: '',
-    apptTime: ''
+    contactNumber: '', // Add validation
+    service: '', // Add validation
+    apptDate: '', // Add validation
+    apptTime: '' // Add validation
 };
 
 var stepNumber = 1;
@@ -171,6 +171,9 @@ function showNavButtons(stepNumber) {
         button = document.createElement("button");
         button.className = "button is-fullwidth";
         button.innerText = "Confirm";
+        button.addEventListener('click', function() {
+            confirmAppointment();
+        });
         container.appendChild(button);
     }
 }
@@ -183,7 +186,6 @@ function clearNavButtons() {
 }
 
 function nextStep() {
-    console.log("Next step");
     if (stepNumber === 3) {
         return;
     }
@@ -203,6 +205,34 @@ function previousStep() {
     }
     stepNumber--;
     showStep(stepNumber);
+}
+
+async function confirmAppointment() {
+    fetch('/api/create-appointment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error, status = ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Appointment confirmed!');
+            window.location.href = '/';
+        } else {
+            alert('Error confirming appointment: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error confirming appointment: ", error);
+        alert('Error confirming appointment. Please try again later.');
+    });
 }
 
 function verifyName() {
