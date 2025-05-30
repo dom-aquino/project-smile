@@ -6,17 +6,16 @@ from main_app.helpers import TIME_SLOTS_DICT
 
 @bp.route("/create-appointment", methods=['POST'])
 def create_appointment():
-    """
     try:
-        appointment = Appointment(first_name=request.json['first_name'],
-                                  last_name=request.json['last_name'],
-                                  contact_number=request.json['contact_number'],
+        appointment = Appointment(first_name=request.json['firstName'],
+                                  last_name=request.json['lastName'],
+                                  contact_number=request.json['contactNumber'],
                                   service=request.json['service'])
         db.session.add(appointment)
 
-        schedule = Schedule(appt_date=datetime.strptime(request.json['appt_date'],
+        schedule = Schedule(appt_date=datetime.strptime(request.json['apptDate'],
                                                         "%Y-%m-%d").date(),
-                            appt_time=request.json['appt_time'],
+                            appt_time=request.json['apptTime'],
                             appointment=appointment)
         db.session.add(schedule)
         db.session.commit()
@@ -28,9 +27,8 @@ def create_appointment():
         error_message = str(e)
         db.session.flush()
         return jsonify({'error': error_message}), 500
-    """
-    return jsonify({'success': 'Appointment has been created.'}), 201
 
+    return jsonify({'success': 'Appointment has been created.'}), 201
 
 @bp.route("/get-available-time", methods=['GET'])
 def get_available_time():
@@ -41,8 +39,4 @@ def get_available_time():
     output = {key:value for key, value in output.items() if key not in appt_times}
 
     return jsonify({'available-time': output})
-
-@bp.route("/test-api", methods=['GET'])
-def test_api():
-    return jsonify({'message': 'API is working.'})
 
