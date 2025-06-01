@@ -1,4 +1,4 @@
-from flask import request, render_template, flash
+from flask import render_template, flash
 from main_app import app
 from main_app.forms import AppointmentForm
 from main_app.models import db, Appointment, Schedule
@@ -51,8 +51,11 @@ def contact_us():
     return render_template("contact_us.html", title="Contact Us")
 
 
-@app.route("/admin", methods=['GET', 'POST'])
+@app.route("/admin", methods=['GET'])
 def admin():
     appts = Appointment.query.all()
+    for appt in appts:
+        print("Appointment Date: ", appt.get_appt_date())
+
     return render_template("admin.html", title="Admin", appts=appts)
 

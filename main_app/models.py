@@ -11,6 +11,9 @@ class Appointment(db.Model):
 
     def get_appt_date(self):
         sched = Schedule.query.filter(self.id == Schedule.appt_id).first();
+        if not sched:
+            print("No schedule found for this appointment.")
+            return None
         return sched.appt_date
 
     def get_appt_time(self):
