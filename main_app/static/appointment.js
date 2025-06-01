@@ -2,10 +2,10 @@
 var formData = {
     firstName: '',
     lastName: '',
-    contactNumber: '', // Add validation
-    service: '', // Add validation
-    apptDate: '', // Add validation
-    apptTime: '' // Add validation
+    contactNumber: '',
+    service: '',
+    apptDate: '',
+    apptTime: ''
 };
 
 var stepNumber = 1;
@@ -14,10 +14,8 @@ var stepNumber = 1;
 document.addEventListener('DOMContentLoaded', function() {
     getCurrentDate();
     getAvailableTimes();
-    updateDisplay(); // To be deleted
     showStep(stepNumber);
 
-    // To be deleted
     bindInput('firstName', 'firstName');
     bindInput('lastName', 'lastName');
     bindInput('contactNumber', 'contactNumber');
@@ -41,7 +39,6 @@ async function getAvailableTimes() {
         const data = await response.json();
         clearTimeSlotsButtons();
         createTimeSlotsButtons(data['available-time']);
-        updateDisplay();
     } catch (error) {
         console.error("Error fetching available times: ", error);
     }
@@ -52,7 +49,7 @@ function createTimeSlotsButtons(availableTime) {
     for (const key of Object.keys(availableTime)) {
         const button = document.createElement('button');
         button.textContent = availableTime[key];
-        button.className = "button mt-2 mx-2"; // Ugly hack to make it look decent
+        button.className = "button mt-2 mx-2";
         button.setAttribute("data-value", key);
         button.addEventListener('click', function() {
             chooseTimeSlot(key, button);
@@ -78,46 +75,28 @@ function getCurrentDate() {
     document.getElementById('apptDate').value = formData.apptDate = today;
 }
 
-// To be deleted
-// This just shows how to bind an input to a variable
 function bindInput(id, key) {
     var element = document.getElementById(id);
     element.addEventListener('input', function() {
         formData[key] = element.value;
-        updateDisplay();
     });
-}
-
-function updateDisplay() {
-    document.getElementById('displayFirstName').innerText = formData.firstName;
-    document.getElementById('displayLastName').innerText = formData.lastName;
-    document.getElementById('displayContactNumber').innerText = formData.contactNumber;
-    document.getElementById('displayService').innerText = formData.service;
-    document.getElementById('displaySchedule').innerText = formData.apptDate;
-    document.getElementById('displayTime').innerText = formData.apptTime;
 }
 
 function chooseTimeSlot(key, button) {
     formData.apptTime = key;
-    updateDisplay();
-
     var buttons = document.querySelectorAll('#time-slots button');
     buttons.forEach(function(btn) {
         btn.classList.remove('selected-service');
     });
-
     button.classList.add('selected-service');
 }
 
 function chooseService(service, button) {
     formData.service = service;
-    updateDisplay();
-
     var buttons = document.querySelectorAll('.service-button');
     buttons.forEach(function(btn) {
         btn.classList.remove('selected-service');
     });
-
     button.classList.add('selected-service');
 }
 
