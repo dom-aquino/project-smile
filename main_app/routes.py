@@ -54,8 +54,5 @@ def contact_us():
 @app.route("/admin", methods=['GET'])
 def admin():
     appts = Appointment.query.all()
-    for appt in appts:
-        print("Appointment Date: ", appt.get_appt_date())
-
     return render_template("admin.html", title="Admin", appts=appts)
 

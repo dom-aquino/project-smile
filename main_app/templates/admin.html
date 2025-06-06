@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     {% for appt in appts %}
-                        <tr>
+                        <tr data-id={{ appt.id }}>
                             <td>{{ appt.first_name }}</td>
                             <td>{{ appt.last_name }}</td>
                             <td>{{ appt.contact_number }}</td>
@@ -30,9 +30,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+            <p>Appointment ID: <span id="displayAppointmentId"></span></p>
         </div>
     </div>
-    <br>
 {% endblock %}
 
 {% block script %}
