@@ -40,3 +40,8 @@ def get_available_time():
 
     return jsonify({'available-time': output})
 
+@bp.route("/view-appointment", methods=['GET'])
+def edit_appointment():
+    return jsonify({'status': 'ok'})
+    #return jsonify({'message': 'This feature is not implemented yet.'}), 501
+

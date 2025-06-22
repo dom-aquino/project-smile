@@ -187,6 +187,7 @@ function previousStep() {
 }
 
 async function confirmAppointment() {
+    // No await? Check this.
     fetch('/api/create-appointment', {
         method: 'POST',
         headers: {
