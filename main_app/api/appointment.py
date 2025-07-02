@@ -41,7 +41,22 @@ def get_available_time():
     return jsonify({'available-time': output})
 
 @bp.route("/view-appointment", methods=['GET'])
-def edit_appointment():
-    return jsonify({'status': 'ok'})
-    #return jsonify({'message': 'This feature is not implemented yet.'}), 501
+def view_appointment():
+    id = request.args.get('selected_appointment')
+    appointment = Appointment.query.get(id)
+    if not appointment:
+        return jsonify({'error': 'Appointment not found'}), 404
 
+    schedule = Schedule.query.filter_by(appt_id=id).first()
+    if not schedule:
+        return jsonify({'error': 'Schedule not found for this appointment'}), 404
+
+    output = {
+        'firstName': appointment.first_name,
+        'lastName': appointment.last_name,
+        'contactNumber': appointment.contact_number,
+        'service': appointment.service,
+        'apptDate': schedule.appt_date.strftime("%Y-%m-%d"),
+        'apptTime': schedule.appt_time
+    }
+    return jsonify(output)
