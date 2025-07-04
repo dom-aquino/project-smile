@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('selectedFirstName').value = result.firstName;
         document.getElementById('selectedLastName').value = result.lastName;
         document.getElementById('selectedContactNumber').value = result.contactNumber;
+        document.getElementById('selectedService').value = result.service;
         document.getElementById('selectedApptDate').value = result.apptDate;
         document.getElementById('selectedApptTime').value = result.apptTime;
     };

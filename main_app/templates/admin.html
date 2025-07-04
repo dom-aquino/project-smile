@@ -39,9 +39,9 @@
         <input class="input" type="text" id="selectedFirstName" readonly/>
         <input class="input" type="text" id="selectedLastName" readonly/>
         <input class="input" type="text" id="selectedContactNumber" readonly/>
-        <input class="input" type="date" id="selectedApptDate" required/>
-        <input class="input" type="text" id="selectedApptTime" readonly/>
-        <input class="input" type="text" id="selectedService" readonly/>
+        <input class="input" type="date" id="selectedApptDate"/>
+        <input class="input" type="text" id="selectedApptTime"/>
+        <input class="input" type="text" id="selectedService"/>
       </div>
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
@@ -50,4 +50,3 @@
 {% block script %}
     <script src="{{ url_for('static', filename='admin.js') }}"></script>
 {% endblock %}
-

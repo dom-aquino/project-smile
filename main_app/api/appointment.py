@@ -55,8 +55,8 @@ def view_appointment():
         'firstName': appointment.first_name,
         'lastName': appointment.last_name,
         'contactNumber': appointment.contact_number,
-        'service': appointment.service,
-        'apptDate': schedule.appt_date.strftime("%Y-%m-%d"),
-        'apptTime': schedule.appt_time
+        'service': appointment.get_service(),
+        'apptDate': appointment.get_appt_date().strftime("%Y-%m-%d"),
+        'apptTime': appointment.get_appt_time(),
     }
     return jsonify(output)
