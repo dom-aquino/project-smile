@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             this.classList.add('is-selected', 'is-link', 'has-text-white');
             selectedAppointmentId = this.dataset.id;
-            document.getElementById('displayAppointmentId').innerText = selectedAppointmentId;
         });
     });
 
@@ -56,6 +55,22 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteButton.addEventListener('click', function(){
         console.log('Delete button');
     });
+
+    function checkAppointmentSelected() {
+        console.log('Checking appointment selected');
+        const selectedRow = table.querySelector('tbody tr.is-selected');
+        if (selectedRow) {
+            editButton.disabled = false;
+            deleteButton.disabled = false;
+        } else {
+            editButton.disabled = true;
+            deleteButton.disabled = true;
+        }
+    }
+
+    table.addEventListener('click', checkAppointmentSelected);
+
+    checkAppointmentSelected();
 
     document.addEventListener('keydown', (event) => {
         if (event.key === "Escape") {
