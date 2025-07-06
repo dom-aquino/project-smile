@@ -40,15 +40,22 @@
         <div id="step2" style="display: none;">
             <div class="columns is-centered">
                 <div class="column is-one-third">
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('consultation', this)">Consultation</button>
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('teeth-whitening', this)">Teeth Whitening</button>
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('teeth-braces', this)">Teeth Braces</button>
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('cleaning', this)">Oral Prophylaxis</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('consultation', this)">Consultation</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('teeth-whitening', this)">Teeth Whitening</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('teeth-braces', this)">Teeth Braces</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('cleaning', this)">Oral Prophylaxis</button>
                 </div>
                 <div class="column is-one-third">
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('root-canal', this)">Root Canal</button>
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('teeth-extraction', this)">Tooth Extraction</button>
-                    <button class="block button is-fullwidth service-button" id="service" onclick="chooseService('dental-filling', this)">Dental Filling</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('root-canal', this)">Root Canal</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('teeth-extraction', this)">Tooth Extraction</button>
+                    <button class="block button is-fullwidth service-button" id="service"
+                        onclick="chooseService('dental-filling', this)">Dental Filling</button>
                 </div>
             </div>
         </div>
@@ -81,22 +88,10 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div class="columns">
-            <div class="column is-one-third is-offset-4">
-                <p>First Name: <span id="displayFirstName"></span></p>
-                <p>Last Name: <span id="displayLastName"></span></p>
-                <p>Contact Number: <span id="displayContactNumber"></span></p>
-                <p>Service: <span id="displayService"></span></p>
-                <p>Schedule: <span id="displaySchedule"></span></p>
-                <p>Time: <span id="displayTime"></span></p>
-            </div>
-        </div>
-        -->
     </div>
 {% endblock %}
 
 {% block script %}
-    <script src="{{ url_for("static", filename='appointment.js') }}"></script>
+    <script src="{{ url_for('static', filename='appointment.js') }}"></script>
 {% endblock %}
 
