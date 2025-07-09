@@ -19,11 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
     bindInput('firstName', 'firstName');
     bindInput('lastName', 'lastName');
     bindInput('contactNumber', 'contactNumber');
-    bindInput('service', 'service');
     bindInput('apptDate', 'apptDate');
 
     document.getElementById('apptDate').addEventListener('change', function(event) {
         getAvailableTimes();
+    });
+
+    document.getElementById('service-buttons').addEventListener('click', function(e) {
+        if (e.target.classList.contains('service-button')) {
+            chooseService(e.target.dataset.service, e.target);
+        }
     });
 });
 
