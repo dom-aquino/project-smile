@@ -1,27 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    function closeModal(el){
-        el.classList.remove('is-active');
-    };
-
-    function openModal(el){
-        el.classList.add('is-active');
-    };
-
-    function closeAllModals(){
-        document.querySelectorAll('.modal').forEach(modal => {
-            closeModal(modal);
-        });
-    };
-
-    function updateInfo(result) {
-        document.getElementById('selectedFirstName').value = result.firstName;
-        document.getElementById('selectedLastName').value = result.lastName;
-        document.getElementById('selectedContactNumber').value = result.contactNumber;
-        document.getElementById('selectedService').value = result.service;
-        document.getElementById('selectedApptDate').value = result.apptDate;
-        document.getElementById('selectedApptTime').value = result.apptTime;
-    };
-
     let selectedAppointmentId = "";
     const table = document.getElementById('schedule-table');
     table.querySelectorAll('tbody tr').forEach(row => {
@@ -42,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('HTTP error, status = ' + response.status);
             }
-            updateInfo(result);
-            const editModal = document.getElementById('editModal');
-            openModal(editModal);
         } catch (error) {
             console.error("Error.");
             throw error;
@@ -71,10 +45,4 @@ document.addEventListener('DOMContentLoaded', () => {
     table.addEventListener('click', checkAppointmentSelected);
 
     checkAppointmentSelected();
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === "Escape") {
-            closeAllModals();
-        }
-    });
 });
