@@ -15,6 +15,6 @@ SERVICES = [('consultation', 'Consultation'),
             ('root-canal', 'Root Canal'),
             ('teeth-extraction', 'Teeth Extraction'),
             ('dental-filling', 'Dental Filling (Pasta)'),
-            ('cleaning', 'Oral Propylaxis (Cleaning)')]
+            ('oral-propylaxis', 'Oral Propylaxis (Cleaning)')]
 
 SERVICES_DICT = dict(SERVICES)

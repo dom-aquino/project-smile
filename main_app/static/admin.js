@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedAppointmentId = this.dataset.id;
         });
     });
+    table.addEventListener('click', checkAppointmentSelected);
 
     const editButton = document.getElementById('editButton');
     editButton.addEventListener('click', async function(){
@@ -41,8 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteButton.disabled = true;
         }
     }
-
-    table.addEventListener('click', checkAppointmentSelected);
 
     checkAppointmentSelected();
 });
