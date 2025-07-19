@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    function closeModal(el){
+        el.classList.remove('is-active');
+    };
+
+    function openModal(el){
+        el.classList.add('is-active');
+    };
+
+    function closeAllModals(){
+        document.querySelectorAll('.modal').forEach(modal => {
+            closeModal(modal);
+        });
+    };
+
+    function populateModalElements(result) {
+        document.getElementById('clientName').innerHTML = "Edit Appointment: " 
+            + result.firstName + ' ' + result.lastName;
+    };
+
     let selectedAppointmentId = "";
     const table = document.getElementById('schedule-table');
     table.querySelectorAll('tbody tr').forEach(row => {
@@ -10,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedAppointmentId = this.dataset.id;
         });
     });
-    table.addEventListener('click', checkAppointmentSelected);
 
     const editButton = document.getElementById('editButton');
     editButton.addEventListener('click', async function(){
@@ -20,6 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) {
                 throw new Error('HTTP error, status = ' + response.status);
             }
+            console.log(result);
+            populateModalElements(result);
+            const editModal = document.getElementById('editModal');
+            openModal(editModal);
         } catch (error) {
             console.error("Error.");
             throw error;
@@ -43,5 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    table.addEventListener('click', checkAppointmentSelected);
+
     checkAppointmentSelected();
+
+    const serviceDropDown = document.getElementById('dropdown-trigger');
+    serviceDropDown.addEventListener('click', function() {
+        const dropdown = document.getElementsByClassName('dropdown')[0];
+        dropdown.classList.toggle('is-active');
+    });
+
+    const cancelButtons = document.querySelectorAll('.cancel-buttons');
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', closeAllModals);
+    });
+
 });
+

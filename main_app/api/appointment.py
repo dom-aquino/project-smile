@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import request, jsonify
 from main_app.models import db, Appointment, Schedule
 from main_app.api import bp
-from main_app.helpers import TIME_SLOTS_DICT
+from main_app.helpers import TIME_SLOTS_DICT, SERVICES_DICT
 
 @bp.route("/create-appointment", methods=['POST'])
 def create_appointment():
@@ -51,11 +51,14 @@ def view_appointment():
     if not schedule:
         return jsonify({'error': 'Schedule not found for this appointment'}), 404
 
+    services_map = {service: False for service in SERVICES_DICT.keys()}
+    services_map[appointment.service] = True
+
     output = {
         'firstName': appointment.first_name,
         'lastName': appointment.last_name,
         'contactNumber': appointment.contact_number,
-        'service': appointment.get_service(),
+        'service': services_map,
         'apptDate': appointment.get_appt_date().strftime("%Y-%m-%d"),
         'apptTime': appointment.get_appt_time(),
     }
