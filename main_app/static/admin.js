@@ -23,11 +23,22 @@ function openModal(id) {
     const modal = document.getElementById('editModal');
     if (modal) {
         modal.classList.add('is-active');
-        console.log("Opening modal for id:", id);
     }
+}
+
+function closeAllModals() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.classList.remove('is-active');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeTable();
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+            closeAllModals();
+        }
+    });
 });
 
