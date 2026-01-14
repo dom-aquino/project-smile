@@ -39,27 +39,3 @@ def get_available_time():
     output = {key:value for key, value in output.items() if key not in appt_times}
 
     return jsonify({'available-time': output})
-
-@bp.route("/view-appointment", methods=['GET'])
-def view_appointment():
-    id = request.args.get('selected_appointment')
-    appointment = Appointment.query.get(id)
-    if not appointment:
-        return jsonify({'error': 'Appointment not found'}), 404
-
-    schedule = Schedule.query.filter_by(appt_id=id).first()
-    if not schedule:
-        return jsonify({'error': 'Schedule not found for this appointment'}), 404
-
-    services_map = {service: False for service in SERVICES_DICT.keys()}
-    services_map[appointment.service] = True
-
-    output = {
-        'firstName': appointment.first_name,
-        'lastName': appointment.last_name,
-        'contactNumber': appointment.contact_number,
-        'service': services_map,
-        'apptDate': appointment.get_appt_date().strftime("%Y-%m-%d"),
-        'apptTime': appointment.get_appt_time(),
-    }
-    return jsonify(output)
