@@ -13,17 +13,21 @@ function initializeTable() {
 
         row.querySelectorAll('td').forEach(cell => {
             cell.addEventListener('dblclick', function() {
-                openModal(row.dataset.id);
+                openEditAppointmentModal(row.dataset.id);
             });
         });
     });
 }
 
-function openModal(id) {
+function openEditAppointmentModal(id) {
     const modal = document.getElementById('editModal');
     if (modal) {
         modal.classList.add('is-active');
     }
+}
+
+function closeModal(modal) {
+    modal.classList.remove('is-active');
 }
 
 function closeAllModals() {
@@ -33,12 +37,23 @@ function closeAllModals() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initializeTable();
+function initializeModals() {
+    const closeButtons = document.querySelectorAll('.close-buttons');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const modal = button.closest('.modal');
+            closeModal(modal);
+        });
+    });
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' || event.key === 'Esc') {
             closeAllModals();
         }
     });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTable();
+    initializeModals();
 });
 
