@@ -45,6 +45,15 @@ function initializeModals() {
             closeModal(modal);
         });
     });
+    
+    const modalBackgrounds = document.querySelectorAll('.modal-background');
+    modalBackgrounds.forEach(background => {
+        background.addEventListener('click', function() {
+            const modal = background.closest('.modal');
+            closeModal(modal);
+        });
+    });
+
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' || event.key === 'Esc') {
             closeAllModals();
