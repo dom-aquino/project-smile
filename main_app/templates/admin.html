@@ -5,6 +5,27 @@
     <div class="columns">
         <div class="column is-half is-offset-one-quarter"> 
             <h2 class="has-text-centered is-size-4">Booked Schedules</h2>
+            <div class="modal" id="editModal">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Edit Appointment</p>
+                        <button class="delete close-buttons" aria-label="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <p><strong>First Name:</strong> <span id="modalFirstName"></span></p>
+                        <p><strong>Last Name:</strong> <span id="modalLastName"></span></p>
+                        <p><strong>Contact Number:</strong> <span id="modalContactNumber"></span></p>
+                        <p><strong>Appointment Date:</strong> <span id="modalApptDate"></span></p>
+                        <p><strong>Appointment Time:</strong> <span id="modalApptTime"></span></p>
+                        <p><strong>Service:</strong> <span id="modalService"></span></p>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button mr-3">Delete</button>
+                        <button class="button">Save</button>
+                    </footer>
+                </div>
+            </div>
             <table class="table is-hoverable" id="schedule-table">
                 <thead>
                     <tr>
@@ -18,7 +39,14 @@
                 </thead>
                 <tbody>
                     {% for appt in appts %}
-                        <tr data-id={{ appt.id }}>
+                        <tr data-id="{{ appt.id }}"
+                            data-first-name="{{ appt.first_name }}"
+                            data-last-name="{{ appt.last_name }}"
+                            data-contact-number="{{ appt.contact_number }}"
+                            data-appt-date="{{ appt.get_appt_date() }}"
+                            data-appt-time="{{ appt.get_appt_time() }}"
+                            data-service="{{ appt.get_service() }}"
+                        >
                             <td>{{ appt.first_name }}</td>
                             <td>{{ appt.last_name }}</td>
                             <td>{{ appt.contact_number }}</td>
@@ -29,23 +57,6 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="modal" id="editModal">
-                <div class="modal-background"></div>
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Edit Appointment</p>
-                        <button class="delete close-buttons" aria-label="close"></button>
-                    </header>
-                    <section class="modal-card-body">
-                        <!-- Modal content goes here -->
-                        <p>Appointment details will be displayed here.</p>
-                    </section>
-                    <footer class="modal-card-foot">
-                        <button class="button mr-3">Delete</button>
-                        <button class="button">Save</button>
-                    </footer>
-                </div>
-            </div>
         </div>
     </div>
 </section>

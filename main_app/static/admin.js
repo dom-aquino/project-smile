@@ -13,13 +13,36 @@ function initializeTable() {
 
         row.querySelectorAll('td').forEach(cell => {
             cell.addEventListener('dblclick', function() {
-                openEditAppointmentModal(row.dataset.id);
+                openEditAppointmentModal(row);
             });
         });
     });
 }
 
-function openEditAppointmentModal(id) {
+function openEditAppointmentModal(row) {
+    const firstName = row.dataset.firstName;
+    const lastName = row.dataset.lastName;
+    const contactNumber = row.dataset.contactNumber;
+    const apptDate = row.dataset.apptDate;
+    const apptTime = row.dataset.apptTime;
+    const service = row.dataset.service;
+
+    document.getElementById('modalFirstName').textContent = firstName;
+    document.getElementById('modalLastName').textContent = lastName;
+    document.getElementById('modalContactNumber').textContent = contactNumber;
+
+    const date = document.getElementById('modalApptDate');
+    const dateInput = document.createElement('input');
+    dateInput.className = 'input';
+    dateInput.type = 'date';
+    dateInput.value = apptDate;
+    date.innerHTML = '';
+    date.appendChild(dateInput);
+
+    //document.getElementById('modalApptDate').textContent = apptDate;
+    document.getElementById('modalApptTime').textContent = apptTime;
+    document.getElementById('modalService').textContent = service;
+
     const modal = document.getElementById('editModal');
     if (modal) {
         modal.classList.add('is-active');
