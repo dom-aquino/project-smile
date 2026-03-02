@@ -72,6 +72,7 @@ def update_appointment():
         schedule = Schedule.query.get(appointment_id)
         if appointment and schedule:
             schedule.appt_date = datetime.strptime(request.json['newDate'], "%Y-%m-%d").date()
+            schedule.appt_time = request.json['newTime']
             db.session.commit()
             return jsonify({'success': 'Appointment has been updated.'}), 200
         else:

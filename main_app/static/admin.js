@@ -39,7 +39,34 @@ function openEditAppointmentModal(row) {
     date.innerHTML = '';
     date.appendChild(dateInput);
 
-    document.getElementById('modalApptTime').textContent = apptTime;
+    const time = document.getElementById('modalApptTime');
+    const timeSelect = document.createElement('select');
+    timeSelect.className = 'input';
+
+    const timeSlots = [
+        { id: 1, label: '09:00 AM' },
+        { id: 2, label: '10:00 AM' },
+        { id: 3, label: '11:00 AM' },
+        { id: 4, label: '01:00 PM' },
+        { id: 5, label: '02:00 PM' },
+        { id: 6, label: '03:00 PM' },
+        { id: 7, label: '04:00 PM' },
+        { id: 8, label: '05:00 PM' }
+    ];
+
+    timeSlots.forEach(slot => {
+        const option = document.createElement('option');
+        option.value = slot.id;
+        option.textContent = slot.label;
+        if (slot === apptTime) {
+            option.selected = true;
+        }
+        timeSelect.appendChild(option);
+    });
+
+    time.innerHTML = '';
+    time.appendChild(timeSelect);
+    
     document.getElementById('modalService').textContent = service;
 
     const modal = document.getElementById('editModal');
@@ -52,7 +79,7 @@ function openEditAppointmentModal(row) {
     });
 
     document.getElementById('save-appt-button').addEventListener('click', function() {
-        updateAppointment(row.dataset.id, dateInput.value);
+        updateAppointment(row.dataset.id, dateInput.value, timeSelect.value);
     });
 }
 
@@ -114,7 +141,7 @@ async function deleteAppointment(appt_id) {
     }
 };
 
-async function updateAppointment(appt_id, new_date) {
+async function updateAppointment(appt_id, new_date, new_time) {
     const url = '/api/update-appointment';
     try {
         fetch(url, {
@@ -124,7 +151,8 @@ async function updateAppointment(appt_id, new_date) {
             },
             body: JSON.stringify({
                 apptId: parseInt(appt_id, 10),
-                newDate: new_date
+                newDate: new_date,
+                newTime: parseInt(new_time, 10)
             })
         }).then(response => {
             if (response.ok) {
