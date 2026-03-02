@@ -50,6 +50,10 @@ function openEditAppointmentModal(row) {
     document.getElementById('delete-appt-button').addEventListener('click', function() {
         deleteAppointment(row.dataset.id);
     });
+
+    document.getElementById('save-appt-button').addEventListener('click', function() {
+        updateAppointment(row.dataset.id, dateInput.value);
+    });
 }
 
 function closeModal(modal) {
@@ -96,13 +100,37 @@ async function deleteAppointment(appt_id) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                appt_id: parseInt(appt_id, 10)
+                apptId: parseInt(appt_id, 10)
             })
         }).then(response => {
             if (response.ok) {
                 location.reload();
             } else {
                 console.error("Failed to delete appointment.");
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching available times: ", error);
+    }
+};
+
+async function updateAppointment(appt_id, new_date) {
+    const url = '/api/update-appointment';
+    try {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                apptId: parseInt(appt_id, 10),
+                newDate: new_date
+            })
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error("Failed to update appointment.");
             }
         });
     } catch (error) {

@@ -34,23 +34,46 @@ def create_appointment():
 def delete_appointment():
     try:
         data = request.get_json()
-        if not data or 'appt_id' not in data:
+        if not data or 'apptId' not in data:
             return jsonify({'error': 'Missing appointment ID in request.'}), 400
 
-        appointment_id = request.json.get('appt_id')
+        appointment_id = request.json.get('apptId')
         if not appointment_id or not isinstance(appointment_id, int):
             return jsonify({'error': 'Invalid appointment ID.'}), 400
-        print(f"Received appointment ID for deletion: {appointment_id}")
+
         appointment = Appointment.query.get(appointment_id)
-        schedule = Schedule.query.filter_by(appt_id=appointment_id).first()
-        if appointment:
+        schedule = Schedule.query.get(appointment_id)
+        if appointment and schedule:
             db.session.delete(schedule)
-            print(f"Found appointment: {appointment.first_name} {appointment.last_name}, Service: {appointment.service}")
             db.session.delete(appointment)
-            print("Appointment deleted from session.")
             db.session.commit()
-            print("Database commit successful.")
             return jsonify({'success': 'Appointment has been deleted.'}), 200
+        else:
+            return jsonify({'error': 'Appointment not found.'}), 404
+    except KeyError as e:
+        error_message = f'Missing key: {e.args[0]}'
+        return jsonify({'error': error_message}), 400
+    except Exception as e:
+        error_message = str(e)
+        return jsonify({'error': error_message}), 500
+
+@bp.route("/update-appointment", methods=['POST'])
+def update_appointment():
+    try:
+        data = request.get_json()
+        if not data or 'apptId' not in data:
+            return jsonify({'error': 'Missing appointment ID in request.'}), 400
+
+        appointment_id = request.json.get('apptId')
+        if not appointment_id or not isinstance(appointment_id, int):
+            return jsonify({'error': 'Invalid appointment ID.'}), 400
+
+        appointment = Appointment.query.get(appointment_id)
+        schedule = Schedule.query.get(appointment_id)
+        if appointment and schedule:
+            schedule.appt_date = datetime.strptime(request.json['newDate'], "%Y-%m-%d").date()
+            db.session.commit()
+            return jsonify({'success': 'Appointment has been updated.'}), 200
         else:
             return jsonify({'error': 'Appointment not found.'}), 404
     except KeyError as e:
