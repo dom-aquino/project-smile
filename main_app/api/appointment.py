@@ -30,6 +30,36 @@ def create_appointment():
 
     return jsonify({'success': 'Appointment has been created.'}), 201
 
+@bp.route("/delete-appointment", methods=['POST'])
+def delete_appointment():
+    try:
+        data = request.get_json()
+        if not data or 'appt_id' not in data:
+            return jsonify({'error': 'Missing appointment ID in request.'}), 400
+
+        appointment_id = request.json.get('appt_id')
+        if not appointment_id or not isinstance(appointment_id, int):
+            return jsonify({'error': 'Invalid appointment ID.'}), 400
+        print(f"Received appointment ID for deletion: {appointment_id}")
+        appointment = Appointment.query.get(appointment_id)
+        schedule = Schedule.query.filter_by(appt_id=appointment_id).first()
+        if appointment:
+            db.session.delete(schedule)
+            print(f"Found appointment: {appointment.first_name} {appointment.last_name}, Service: {appointment.service}")
+            db.session.delete(appointment)
+            print("Appointment deleted from session.")
+            db.session.commit()
+            print("Database commit successful.")
+            return jsonify({'success': 'Appointment has been deleted.'}), 200
+        else:
+            return jsonify({'error': 'Appointment not found.'}), 404
+    except KeyError as e:
+        error_message = f'Missing key: {e.args[0]}'
+        return jsonify({'error': error_message}), 400
+    except Exception as e:
+        error_message = str(e)
+        return jsonify({'error': error_message}), 500
+
 @bp.route("/get-available-time", methods=['GET'])
 def get_available_time():
     date = request.args.get('selected_date')

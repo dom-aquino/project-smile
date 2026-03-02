@@ -39,7 +39,6 @@ function openEditAppointmentModal(row) {
     date.innerHTML = '';
     date.appendChild(dateInput);
 
-    //document.getElementById('modalApptDate').textContent = apptDate;
     document.getElementById('modalApptTime').textContent = apptTime;
     document.getElementById('modalService').textContent = service;
 
@@ -47,6 +46,10 @@ function openEditAppointmentModal(row) {
     if (modal) {
         modal.classList.add('is-active');
     }
+
+    document.getElementById('delete-appt-button').addEventListener('click', function() {
+        deleteAppointment(row.dataset.id);
+    });
 }
 
 function closeModal(modal) {
@@ -83,6 +86,29 @@ function initializeModals() {
         }
     });
 }
+
+async function deleteAppointment(appt_id) {
+    const url = '/api/delete-appointment';
+    try {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                appt_id: parseInt(appt_id, 10)
+            })
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error("Failed to delete appointment.");
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching available times: ", error);
+    }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeTable();
