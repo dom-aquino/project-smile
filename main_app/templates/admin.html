@@ -12,14 +12,22 @@
                         <p class="modal-card-title">Edit Appointment</p>
                         <button class="delete close-buttons" aria-label="close"></button>
                     </header>
-                    <section class="modal-card-body">
-                        <p><strong>First Name:</strong> <span id="modalFirstName"></span></p>
-                        <p><strong>Last Name:</strong> <span id="modalLastName"></span></p>
-                        <p><strong>Contact Number:</strong> <span id="modalContactNumber"></span></p>
-                        <p><strong>Appointment Date:</strong> <span id="modalApptDate"></span></p>
-                        <p><strong>Appointment Time:</strong> <span id="modalApptTime"></span></p>
-                        <p><strong>Service:</strong> <span id="modalService"></span></p>
-                    </section>
+                    <div class="modal-content">
+                        <div class="modal-grid">
+                            <div class="modal-label"><strong>First Name:</strong></div>
+                            <div class="modal-value"><span id="modalFirstName"></span></div>
+                            <div class="modal-label"><strong>Last Name:</strong></div>
+                            <div class="modal-value"><span id="modalLastName"></span></div>
+                            <div class="modal-label"><strong>Contact Number:</strong></div>
+                            <div class="modal-value"><span id="modalContactNumber"></span></div>
+                            <div class="modal-label"><strong>Appointment Date:</strong></div>
+                            <div class="modal-value"><span id="modalApptDate"></span></div>
+                            <div class="modal-label"><strong>Appointment Time:</strong></div>
+                            <div class="modal-value"><span id="modalApptTime"></span></div>
+                            <div class="modal-label"><strong>Service:</strong></div>
+                            <div class="modal-value"><span id="modalService"></span></div>
+                        </div>
+                    </div>
                     <footer class="modal-card-foot">
                         <button class="button mr-3" id="delete-appt-button">Delete</button>
                         <button class="button" id="save-appt-button">Save</button>
