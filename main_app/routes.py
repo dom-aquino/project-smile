@@ -1,4 +1,4 @@
-from flask import render_template, flash
+from flask import render_template, flash, session, request, redirect, url_for
 from main_app import app
 from main_app.forms import AppointmentForm
 from main_app.models import db, Appointment, Schedule
@@ -25,6 +25,39 @@ def index():
 
     return render_template("index.html", title="Welcome", form=form)
 
+# Dummy admin credentials
+ADMIN_CREDENTIALS = {
+    "username": "admin",
+    "password": "admin"
+}
+
+@app.route("/admin", methods=['GET'])
+def admin():
+    return redirect(url_for('admin_login'))
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    appts = Appointment.query.all()
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if username == ADMIN_CREDENTIALS['username'] and password == ADMIN_CREDENTIALS['password']:
+            session['admin_logged_in'] = True
+            flash('Login successful!', 'success')
+            return render_template("admin.html", title="Admin", appts=appts)
+        else:
+            flash('Invalid username or password.', 'danger')
+
+    return render_template("admin.html", title="Admin", appts=appts)
+
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('admin_login'))
+
 
 @app.route("/book-online", methods=['GET'])
 def book_online():
@@ -49,10 +82,4 @@ def locations():
 @app.route("/contact-us", methods=['GET'])
 def contact_us():
     return render_template("contact_us.html", title="Contact Us")
-
-
-@app.route("/admin", methods=['GET'])
-def admin():
-    appts = Appointment.query.all()
-    return render_template("admin.html", title="Admin", appts=appts)
 
