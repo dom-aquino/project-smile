@@ -75,13 +75,6 @@ html, body {
     text-align: left; /* Align values to the left */
 }
 
-.columns {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Optional: Adjust alignment */
-    min-height: 100vh; /* Ensure it spans the full height of the viewport */
-}
-
 hr {
     border: none;
     height: 1px;
